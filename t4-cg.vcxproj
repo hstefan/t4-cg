@@ -84,10 +84,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\core\math\projection.cpp" />
+    <ClCompile Include="src\core\math\transform3d.cpp" />
     <ClCompile Include="src\core\WinManager.cpp" />
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\core\math\math.hpp" />
+    <ClInclude Include="src\core\math\matrix.hpp" />
+    <ClInclude Include="src\core\math\projection.hpp" />
+    <ClInclude Include="src\core\math\transform.hpp" />
+    <ClInclude Include="src\core\math\transform3d.hpp" />
+    <ClInclude Include="src\core\math\vector.hpp" />
     <ClInclude Include="src\core\WinManager.hpp" />
     <ClInclude Include="src\example\WinManagerExample.hpp" />
   </ItemGroup>
