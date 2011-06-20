@@ -22,24 +22,85 @@
  * Nome: Hugo Stefan Kaus Puhlmann
  * Matricula: 2910182
  */
-
-#ifndef HSTEFAN_PROJECTION_HPP
-#define HSTEFAN_PROJECTION_HPP
-
-#include "matrix.hpp"
+#include "transform3d.hpp"
+#include <cmath>
 
 namespace hstefan
 {
 namespace core
 {
-namespace math
+namespace c3d
 {
 
-mat4d orthogonalProj();
-mat4d perspecProj(float d = 1.f);
+using math::mat4d;
+
+mat4d yawRotationMatrix(float angle)
+{
+   mat4d m = {
+      {
+         cos(angle) ,   0   , sin(angle) ,    0,
+              0     ,   1   ,     0      ,    0,
+         -sin(angle),   0   , cos(angle) ,    0,
+              0     ,   0   ,     0      ,    1
+
+      }
+   };
+   return m;
+}
+mat4d pitchRotationMatrix(float angle)
+{
+   mat4d m = {
+      {
+            1       ,       0        ,     0         ,    0,
+            0       ,   cos(angle)   ,   sin(angle)  ,    0,
+            0       ,  -sin(angle)   ,   cos(angle)  ,    0,
+            0       ,       0        ,      0        ,    1
+      }
+   };
+   return m;
+}
+mat4d rollRotationMatrix(float angle)
+{
+   mat4d m = {
+      {
+            cos(angle)   ,   sin(angle)   ,   0  ,    0,
+            -sin(angle)  ,   cos(angle)   ,   0  ,    0,
+                 0       ,        0       ,   1  ,    0,
+                 0       ,        0       ,   0  ,    1
+      }
+   };
+   return m;
+}
+mat4d translationMatrix(float tx, float ty, float tz)
+{
+   mat4d m = {
+      {
+         1, 0, 0, tx,
+         0, 1, 0, ty,
+         0, 0, 1, tz,
+         0, 0, 0,  1
+      }
+   };
+   return m;
+}
+mat4d scaleMatrix(float sx, float sy, float sz)
+{
+   mat4d m  = {
+      {
+            sx, 0  , 0 , 0,
+            0 , sy , 0 , 0,
+            0 , 0  , sz, 0,
+            0,  0  , 0 , 1
+      }
+   };
+   return m;
+}
+
+mat4d identityMatrix()
+{
+   return scaleMatrix(1.f, 1.f, 1.f);
+}
 
 } //namespace math
 } //namespace core
 } //namespace hstefan
-
-#endif

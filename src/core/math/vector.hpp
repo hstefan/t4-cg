@@ -22,8 +22,8 @@
  * Nome: Hugo Stefan Kaus Puhlmann
  * Matricula: 2910182
  */
-#ifndef HSTEFAN_VECTOR_HPP
-#define HSTEFAN_VECTOR_HPP
+#ifndef HSTEFAN_CORE_MATH_VECTOR_HPP
+#define HSTEFAN_CORE_MATH_VECTOR_HPP
 
 #include "matrix.hpp"
 #include "math.hpp"

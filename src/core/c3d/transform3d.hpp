@@ -23,28 +23,26 @@
  * Matricula: 2910182
  */
 
-#include "projection.hpp"
+#ifndef HSTEFAN_CORE_C3D_TRANSFORM_3D_HPP
+#define HSTEFAN_CORE_C3D_TRANSFORM_3D_HPP
 
-using namespace hstefan::core::math;
-
-mat4d hstefan::core::math::orthogonalProj()
+#include "../math/matrix.hpp"
+namespace hstefan
 {
-   mat4d m = {{
-      1, 0, 0, 0,
-      0, 1, 0, 0,
-      0, 0, 0, 0,
-      0, 0, 0, 1
-   }};
-   return m;
-}
-
-mat4d hstefan::core::math::perspecProj(float d)
+namespace core
 {
-   mat4d m = {{
-      1, 0, 0, 0,
-      0, 1, 0, 0,
-      0, 0, 0, 0,
-      0, 0, d, 1
-   }};
-   return m;
-}
+namespace c3d
+{
+
+math::mat4d yawRotationMatrix(float angle);
+math::mat4d pitchRotationMatrix(float angle);
+math::mat4d rollRotationMatrix(float angle);
+math::mat4d translationMatrix(float tx, float ty, float tz);
+math::mat4d scaleMatrix(float sx, float sy, float sz);
+math::mat4d identityMatrix();
+
+} //namespace math
+} //namespace core
+} //namespace hstefan
+
+#endif

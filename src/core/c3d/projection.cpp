@@ -22,83 +22,29 @@
  * Nome: Hugo Stefan Kaus Puhlmann
  * Matricula: 2910182
  */
-#include "transform3d.hpp"
-#include <cmath>
 
-namespace hstefan
-{
-namespace core
-{
-namespace math
-{
+#include "projection.hpp"
 
-mat4d yawRotationMatrix(float angle)
-{
-   mat4d m = {
-      {
-         cos(angle) ,   0   , sin(angle) ,    0,
-              0     ,   1   ,     0      ,    0,
-         -sin(angle),   0   , cos(angle) ,    0,
-              0     ,   0   ,     0      ,    1
+using namespace hstefan::core::math;
 
-      }
-   };
-   return m;
-}
-mat4d pitchRotationMatrix(float angle)
+mat4d hstefan::core::c3d::orthogonalProj()
 {
-   mat4d m = {
-      {
-            1       ,       0        ,     0         ,    0,
-            0       ,   cos(angle)   ,   sin(angle)  ,    0,
-            0       ,  -sin(angle)   ,   cos(angle)  ,    0,
-            0       ,       0        ,      0        ,    1
-      }
-   };
-   return m;
-}
-mat4d rollRotationMatrix(float angle)
-{
-   mat4d m = {
-      {
-            cos(angle)   ,   sin(angle)   ,   0  ,    0,
-            -sin(angle)  ,   cos(angle)   ,   0  ,    0,
-                 0       ,        0       ,   1  ,    0,
-                 0       ,        0       ,   0  ,    1
-      }
-   };
-   return m;
-}
-mat4d translationMatrix(float tx, float ty, float tz)
-{
-   mat4d m = {
-      {
-         1, 0, 0, tx,
-         0, 1, 0, ty,
-         0, 0, 1, tz,
-         0, 0, 0,  1
-      }
-   };
-   return m;
-}
-mat4d scaleMatrix(float sx, float sy, float sz)
-{
-   mat4d m  = {
-      {
-            sx, 0  , 0 , 0,
-            0 , sy , 0 , 0,
-            0 , 0  , sz, 0,
-            0,  0  , 0 , 1
-      }
-   };
+   mat4d m = {{
+      1, 0, 0, 0,
+      0, 1, 0, 0,
+      0, 0, 0, 0,
+      0, 0, 0, 1
+   }};
    return m;
 }
 
-mat4d identityMatrix()
+mat4d hstefan::core::c3d::perspecProj(float d)
 {
-   return scaleMatrix(1.f, 1.f, 1.f);
+   mat4d m = {{
+      1, 0, 0, 0,
+      0, 1, 0, 0,
+      0, 0, 0, 0,
+      0, 0, d, 1
+   }};
+   return m;
 }
-
-} //namespace math
-} //namespace core
-} //namespace hstefan

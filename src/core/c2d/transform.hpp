@@ -22,27 +22,80 @@
  * Nome: Hugo Stefan Kaus Puhlmann
  * Matricula: 2910182
  */
+#ifndef HSTEFAN_CORE_C2D_TRANSFORM_HPP
+#define HSTEFAN_CORE_C2D_TRANSFORM_HPP
 
-#ifndef HSTEFAN_TRANSFORM_3D_HPP
-#define HSTEFAN_TRANSFORM_3D_HPP
+#include "../math/vector.hpp"
+#include "../math/matrix.hpp"
+#include <cmath>
 
-#include "matrix.hpp"
 namespace hstefan
 {
 namespace core
 {
-namespace math
+namespace c2d
 {
 
-mat4d yawRotationMatrix(float angle);
-mat4d pitchRotationMatrix(float angle);
-mat4d rollRotationMatrix(float angle);
-mat4d translationMatrix(float tx, float ty, float tz);
-mat4d scaleMatrix(float sx, float sy, float sz);
-mat4d identityMatrix();
+using math::vec2;
+using math::vec3;
+using math::mat3d;
+
+//deprecated
+inline vec2 rotateClockwise(const vec2& vec, float angle)
+{
+   mat2d m = {{ 
+      std::cos(angle) , std::sin(angle), 
+      -std::sin(angle), std::cos(angle) 
+   }};
+
+   return m*vec;
+}
+
+//deprecated
+inline vec2 rotateAntiClockwise(const vec2& vec, float angle)
+{
+   mat2d m = {{
+      std::cos(angle), -std::sin(angle), 
+      std::sin(angle),  std::cos(angle)
+   }};
+
+   return m*vec;
+}
+
+inline mat3d rotMat2dh(float angle)
+{ 
+   mat3d m = {{
+      std::cos(angle), -std::sin(angle), 0,
+      std::sin(angle), std::cos(angle) , 0,
+      0              , 0,                1
+   }};
+
+   return m;
+}
+
+inline mat3d scaleMat2dh(float sx, float sy)
+{ 
+   mat3d m = {{
+      sx, 0 , 0,
+      0 , sy, 0,
+      0 , 0 , 1
+   }};
+
+   return m;
+}
+
+inline mat3d transMat2dh(float tx, float ty)
+{
+   mat3d m = {{
+      1, 0, tx,
+      0, 1, ty,
+      0, 0, 1
+   }};
+
+   return m;
+}
 
 } //namespace math
 } //namespace core
 } //namespace hstefan
-
 #endif
