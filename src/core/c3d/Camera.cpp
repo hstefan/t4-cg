@@ -68,25 +68,21 @@ void Camera::onChange()
 void Camera::translate(float tx, float ty, float tz)
 {
    m_eye = unhomogen(translationMatrix(tx, ty, tz) * homogen(m_eye));
-   onChange();
 }
 
 void Camera::yaw(float angle)
 {
    rotate(angle, 0.f, 0.f);
-   onChange();
 }
 
 void Camera::pitch(float angle)
 {
    rotate(0.f, angle, 0.f);
-   onChange();
 }
 
 void Camera::roll(float angle)
 {
    rotate(0.f, 0.f, angle);
-   onChange();
 }
 
 hstefan::core::math::mat4d Camera::matrix() const
@@ -100,4 +96,5 @@ void Camera::rotate(float yaw, float pitch, float roll)
    m_forward = unhomogen(res*homogen(m_forward));
    m_up = unhomogen(res*homogen(m_up));
    m_right = unhomogen(res*homogen(m_right));
+   onChange();
 }
