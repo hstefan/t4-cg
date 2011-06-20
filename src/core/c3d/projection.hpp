@@ -38,7 +38,7 @@ namespace c3d
 math::mat4d orthogonalProj();
 math::mat4d perspecProj(float d = 1.f);
 
-} //namespace math
+} //namespace c3d
 } //namespace core
 } //namespace hstefan
 
