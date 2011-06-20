@@ -84,12 +84,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\core\c3d\Camera.cpp" />
     <ClCompile Include="src\core\c3d\projection.cpp" />
     <ClCompile Include="src\core\c3d\transform3d.cpp" />
     <ClCompile Include="src\core\wman\WinManager.cpp" />
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\core\c3d\Camera.hpp" />
     <ClInclude Include="src\core\math\math.hpp" />
     <ClInclude Include="src\core\math\matrix.hpp" />
     <ClInclude Include="src\core\c3d\projection.hpp" />
