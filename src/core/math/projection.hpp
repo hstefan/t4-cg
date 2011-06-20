@@ -30,11 +30,16 @@
 
 namespace hstefan
 {
+namespace core
+{
 namespace math
 {
+
 mat4d orthogonalProj();
 mat4d perspecProj(float d = 1.f);
+
 } //namespace math
+} //namespace core
 } //namespace hstefan
 
 #endif

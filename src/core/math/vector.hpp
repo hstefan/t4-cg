@@ -31,8 +31,11 @@
 
 namespace hstefan
 {
+namespace core
+{
 namespace math
 {
+
 typedef matrix<4, 1> vec4;
 typedef matrix<3, 1> vec3;
 typedef matrix<2, 1> vec2;
@@ -145,19 +148,10 @@ inline matrix<M - 1, 1> unhomogen(const matrix<M, 1>& v)
    return res;
 }
 
-/*
-template <unsigned int M>
-matrix<M - 1, 1> operator matrix<M, 1>(const matrix<M, 1>& v)
-{
-   matrix<M - 1, 1> res;
-   for(unsigned int i = 0; i < M - 1; ++i)
-      res[i] = v[i];
-   return res;
-}*/
-
-
 } //namespace math
+} //namespace core
 } //namespace hstefan
+
 #ifdef _DEBUG
 #include <ostream>
 template <unsigned int M, unsigned int N>

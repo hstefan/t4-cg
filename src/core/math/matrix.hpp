@@ -27,6 +27,8 @@
 
 namespace hstefan
 {
+namespace core
+{
 namespace math
 {
 template <unsigned int M, unsigned int N = M>
@@ -160,7 +162,7 @@ matrix<M,P> operator*(const matrix<M, N>& m1, const matrix<N, P>& m2)
 
    return res;
 }
-} //namespace base
+} //namespace math
+} //namespace core
 } //namespace hstefan
-
 #endif

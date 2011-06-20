@@ -28,7 +28,7 @@
 #define HSTEFAN_EXAMPLE_WIN_MANAGER_EXAMPLE_HPP
 
 #include <iostream>
-#include "../core/WinManager.hpp"
+#include "../core/wman/WinManager.hpp"
 #include <GL/glfw.h>
 
 namespace hstefan
@@ -36,11 +36,11 @@ namespace hstefan
 namespace example
 {
 
-class WinManagerExample : public core::WinManager
+class WinManagerExample : public hstefan::core::wman::WinManager
 {
 public:
    WinManagerExample()
-      : hstefan::core::WinManager(30, 60), ttl(40.)
+      : hstefan::core::wman::WinManager(30, 60), ttl(40.)
    {
       start_t = glfwGetTime();
       n_render = 0;

@@ -86,7 +86,7 @@
   <ItemGroup>
     <ClCompile Include="src\core\math\projection.cpp" />
     <ClCompile Include="src\core\math\transform3d.cpp" />
-    <ClCompile Include="src\core\WinManager.cpp" />
+    <ClCompile Include="src\core\wman\WinManager.cpp" />
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -96,7 +96,7 @@
     <ClInclude Include="src\core\math\transform.hpp" />
     <ClInclude Include="src\core\math\transform3d.hpp" />
     <ClInclude Include="src\core\math\vector.hpp" />
-    <ClInclude Include="src\core\WinManager.hpp" />
+    <ClInclude Include="src\core\wman\WinManager.hpp" />
     <ClInclude Include="src\example\WinManagerExample.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

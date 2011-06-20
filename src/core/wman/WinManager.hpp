@@ -24,40 +24,70 @@
  * Matricula: 2910182
  */
 
-#include "WinManager.hpp"
+#ifndef HSTEFAN_CORE_WIN_MANAGER_HPP
+#define HSTEFAN_CORE_WIN_MANAGER_HPP
 
-#include <algorithm>
-#include <GL/glfw.h>
-
-using hstefan::core::WinManager;
-
-WinManager::WinManager(float fps, float ups)
-   : fps(1./fps), ups(1./ups)
-{}
-
-void WinManager::run()
+namespace hstefan
 {
-   double last_update = 0.;
-   double last_render = 0.;
-   double sleep_t = 0.;
-   onStart();
-   while(!isDone() && glfwGetWindowParam(GLFW_OPENED))
-   {
-      if(glfwGetTime() - last_update > ups)
-      {
-         onUpdate();
-         last_update = glfwGetTime();
-      }
-      if(glfwGetTime() - last_render > fps)
-      {
-         glClear(GL_COLOR_BUFFER_BIT);
-         onRender();
-         glfwSwapBuffers();
-         last_render = glfwGetTime();
-      }
-      sleep_t = std::min(last_update + ups - glfwGetTime(), last_render + fps - glfwGetTime());
-      glfwSleep(sleep_t);
-   }
-   onDestroy();
-   glfwTerminate();
-}
+namespace core
+{
+namespace wman
+{
+/**
+ * Classe para abstrata para manipular o main loop de aplicações gráficas.
+ */
+class WinManager
+{
+public:
+   /**
+    * Função que deve ser sobreescrita para realisar operações de atualização, 
+    * de acordo com o tempo especificado no construtor.
+    */
+   virtual void onUpdate() 
+   { /* Por padrão, a função onUpdate não faz nada. */ }
+   
+   /**
+    * Função que deve ser sobreescrita para realisar operações de renderização, 
+    * de acordo com o tempo especificado no construtor.
+    */
+   virtual void onRender() = 0;
+   
+   /**
+    * Função chamada após término do main loop.
+    */
+   virtual void onDestroy()
+   { /* Por padrão, não faz nada. */}
+
+   /**
+    * Função chamada quando o programa começa a rodar.
+    */
+   virtual void onStart()
+   { /*Por padrão, não faz nada*/ }
+
+   /**
+    * Função que vai "dizer" quando o programa pára, o teste será feito após cada
+    * chamada da função onUpdate.
+    */
+   virtual bool isDone() = 0;
+
+   /**
+    * Função que inicia o loop principal.
+    */
+   void run();
+
+   /**
+    * @param fps Frames per second.
+    * @param ups Updates per second.
+    */
+   WinManager(float fps, float ups);
+
+protected:
+   double fps;
+   double ups;
+};
+
+} //namespace wman
+} //namespace core
+} //namespace hstefan
+
+#endif

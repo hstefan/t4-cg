@@ -27,6 +27,8 @@
 
 namespace hstefan
 {
+namespace core
+{
 namespace math
 {
 
@@ -41,6 +43,7 @@ inline float invSqrt(float x)
 }
 
 } //namespace math
+} //namespace core
 } //namespace hstefan
 
 #endif

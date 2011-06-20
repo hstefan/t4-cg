@@ -29,6 +29,8 @@
 #include "matrix.hpp"
 namespace hstefan
 {
+namespace core
+{
 namespace math
 {
 
@@ -38,7 +40,9 @@ mat4d rollRotationMatrix(float angle);
 mat4d translationMatrix(float tx, float ty, float tz);
 mat4d scaleMatrix(float sx, float sy, float sz);
 mat4d identityMatrix();
-}
-}
+
+} //namespace math
+} //namespace core
+} //namespace hstefan
 
 #endif

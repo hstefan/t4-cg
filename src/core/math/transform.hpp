@@ -31,8 +31,11 @@
 
 namespace hstefan
 {
+namespace core
+{
 namespace math
 {
+
 //deprecated
 inline vec2 rotateClockwise(const vec2& vec, float angle)
 {
@@ -89,5 +92,6 @@ inline mat3d transMat2dh(float tx, float ty)
 }
 
 } //namespace math
+} //namespace core
 } //namespace hstefan
 #endif

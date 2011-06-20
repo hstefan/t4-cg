@@ -25,9 +25,9 @@
 
 #include "projection.hpp"
 
-using namespace hstefan::math;
+using namespace hstefan::core::math;
 
-mat4d hstefan::math::orthogonalProj()
+mat4d hstefan::core::math::orthogonalProj()
 {
    mat4d m = {{
       1, 0, 0, 0,
@@ -38,7 +38,7 @@ mat4d hstefan::math::orthogonalProj()
    return m;
 }
 
-mat4d hstefan::math::perspecProj(float d)
+mat4d hstefan::core::math::perspecProj(float d)
 {
    mat4d m = {{
       1, 0, 0, 0,
