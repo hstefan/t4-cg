@@ -87,6 +87,7 @@
     <ClCompile Include="src\core\c3d\Camera.cpp" />
     <ClCompile Include="src\core\c3d\projection.cpp" />
     <ClCompile Include="src\core\c3d\transform3d.cpp" />
+    <ClCompile Include="src\core\game\GameWorld.cpp" />
     <ClCompile Include="src\core\wman\WinManager.cpp" />
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>

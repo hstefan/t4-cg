@@ -1,7 +1,7 @@
 #include <GL/glfw.h>
 #include <iostream>
 
-#include "example/WinManagerExample.hpp"
+#include "core/game/GameWorld.hpp"
 
 int main(int argc, char* argv[])
 {
@@ -25,6 +25,6 @@ int main(int argc, char* argv[])
       return ERR_GLFW_WIN;
    }
 
-   hstefan::example::WinManagerExample m;
-   m.run();
+   hstefan::core::game::GameWorld world;
+   world.run();
 }
