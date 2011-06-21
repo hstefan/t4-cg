@@ -155,7 +155,7 @@ inline matrix<M - 1, 1> unhomogen(const matrix<M, 1>& v)
 #ifdef _DEBUG
 #include <ostream>
 template <unsigned int M, unsigned int N>
-std::ostream& operator<<(std::ostream& out, const hstefan::math::matrix<M, N>& m)
+std::ostream& operator<<(std::ostream& out, const hstefan::core::math::matrix<M, N>& m)
 {
 	out << "(";
 	for(unsigned int i = 0; i < M; ++i)
