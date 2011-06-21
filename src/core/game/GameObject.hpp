@@ -38,6 +38,7 @@ namespace game
 class GameObject
 {
 public:
+   inline GameObject();
    /**
     * Função chamada a cada ciclo de update no gameworld.
     */
@@ -53,10 +54,14 @@ public:
    {/* Por padrão, não faz nada. */ }
    virtual void onCreate()
    {/* Por padrão, não faz nada. */ }
-private:
+protected:
    friend class GameWorld;
    GameWorld::object_id id;
 };
+
+GameObject::GameObject()
+   : id(GameWorld::DEFAULT_OBJECT_ID)
+{}
 
 } //namespace game
 } //namespace core
