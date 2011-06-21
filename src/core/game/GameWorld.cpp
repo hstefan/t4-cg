@@ -45,17 +45,17 @@ void GameWorld::onUpdate()
 void GameWorld::onRender()
 {
    std::for_each(game_objs.begin(), game_objs.end(), 
-      [](std::pair<object_id, GameObject*> p) { p.second->onUpdate(); } );
+      [](std::pair<object_id, GameObject*> p) { p.second->onRender(); } );
 }
 void GameWorld::onDestroy()
 {
    std::for_each(game_objs.begin(), game_objs.end(), 
-      [](std::pair<object_id, GameObject*> p) { p.second->onUpdate(); } );
+      [](std::pair<object_id, GameObject*> p) { p.second->onDestroy(); } );
 }
 void GameWorld::onStart()
 {
    std::for_each(game_objs.begin(), game_objs.end(), 
-      [](std::pair<object_id, GameObject*> p) { p.second->onUpdate(); } );
+      [](std::pair<object_id, GameObject*> p) { p.second->onCreate(); } );
 }
 
 std::pair<GameWorld::object_id, bool> GameWorld::addObject(GameObject* obj)
