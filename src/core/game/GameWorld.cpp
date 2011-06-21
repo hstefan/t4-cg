@@ -23,49 +23,58 @@
  * Matricula: 2910182
  */
 
-#ifndef HSTEFAN_CORE_GAME_GAMEWORLD_HPP
-#define HSTEFAN_CORE_GAME_GAMEWORLD_HPP
+#include "GameWorld.hpp"
+#include "GameObject.hpp"
+#include <algorithm>
+#include <GL/glfw.h>
 
-#include <map>
-#include "../wman/WinManager.hpp"
+using hstefan::core::game::GameWorld;
+using hstefan::core::game::GameObject;
 
-namespace hstefan
+bool GameWorld::isDone()
 {
-namespace core
+   return glfwGetKey(GLFW_KEY_ESC) == GLFW_PRESS;
+}
+
+void GameWorld::onUpdate()
 {
-namespace game
+   std::for_each(game_objs.begin(), game_objs.end(), 
+      [](std::pair<object_id, GameObject*> p) { p.second->onUpdate(); } );
+}
+
+void GameWorld::onRender()
 {
-
-class GameObject;
-
-class GameWorld : public wman::WinManager
+   std::for_each(game_objs.begin(), game_objs.end(), 
+      [](std::pair<object_id, GameObject*> p) { p.second->onUpdate(); } );
+}
+void GameWorld::onDestroy()
 {
-public:
-   typedef int object_id;
-   
-   static const int DEFAULT_OBJECT_ID = -1;
+   std::for_each(game_objs.begin(), game_objs.end(), 
+      [](std::pair<object_id, GameObject*> p) { p.second->onUpdate(); } );
+}
+void GameWorld::onStart()
+{
+   std::for_each(game_objs.begin(), game_objs.end(), 
+      [](std::pair<object_id, GameObject*> p) { p.second->onUpdate(); } );
+}
 
-   inline GameWorld(double fps = 30.f, double ups = 60.f);
+std::pair<GameWorld::object_id, bool> GameWorld::addObject(GameObject* obj)
+{
+   int id = next_id++;
+   auto r = game_objs.insert(std::make_pair(id, obj));
+   if(r.second)
+   {
+      obj->id = id;
+      return std::make_pair(id, true);
+   }
+   else
+   {
+      --next_id;
+      return std::make_pair(DEFAULT_OBJECT_ID, false);
+   }
+}
 
-   bool isDone();
-   void onUpdate();
-   void onRender();
-   void onDestroy();
-   void onStart();
-
-   std::pair<object_id, bool> addObject(GameObject* obj);
-   bool removeObject(object_id id);
-private:
-   std::map<object_id, GameObject*> game_objs;
-   object_id next_id;
-};
-
-GameWorld::GameWorld(double fps, double ups)
-   : wman::WinManager(fps, ups), game_objs(), next_id(0)
-{}
-
-} //namespace game
-} //namespace core
-} //namespace hstefan
-
-#endif
+bool GameWorld::removeObject(object_id id)
+{
+   return game_objs.erase(id) > 0;
+}
