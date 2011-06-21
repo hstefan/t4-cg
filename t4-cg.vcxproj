@@ -92,6 +92,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\core\c3d\Camera.hpp" />
+    <ClInclude Include="src\core\game\GameObject.hpp" />
+    <ClInclude Include="src\core\game\GameWorld.hpp" />
     <ClInclude Include="src\core\math\math.hpp" />
     <ClInclude Include="src\core\math\matrix.hpp" />
     <ClInclude Include="src\core\c3d\projection.hpp" />

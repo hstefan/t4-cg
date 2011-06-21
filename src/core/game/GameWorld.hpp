@@ -23,10 +23,12 @@
  * Matricula: 2910182
  */
 
-#ifndef HSTEFAN_CORE_GAME_GAMEOBJECT_HPP
-#define HSTEFAN_CORE_GAME_GAMEOBJECT_HPP
+#ifndef HSTEFAN_CORE_GAME_GAMEWORLD_HPP
+#define HSTEFAN_CORE_GAME_GAMEWORLD_HPP
 
-#include "GameWorld.hpp"
+#include <set>
+#include "../wman/WinManager.hpp"
+#include "GameObject.hpp"
 
 namespace hstefan
 {
@@ -35,27 +37,14 @@ namespace core
 namespace game
 {
 
-class GameObject
+class GameWorld : public wman::WinManager
 {
 public:
-   /**
-    * Função chamada a cada ciclo de update no gameworld.
-    */
-   virtual void onUpdate() = 0;
-   /**
-    * Função chamada a cada ciclo de render no gameworld.
-    */
-   virtual void onRender() = 0;
-   /**
-    * Função chamada quando o gameworld é destruido.
-    */
-   virtual void onDestroy()
-   {/* Por padrão, não faz nada. */ }
-   virtual void onCreate()
-   {/* Por padrão, não faz nada. */ }
+   typedef int object_id;
+   object_id addObject(GameObject* obj);
+   bool removeObject(object_id id);
 private:
-   friend class GameWorld;
-   GameWorld::object_id id;
+   std::set<object_id, GameObject*> game_objs;
 };
 
 } //namespace game
