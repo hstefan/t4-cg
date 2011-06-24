@@ -24,6 +24,8 @@
  */
 
 #include "../core/game/GameObject.hpp"
+#include <utility>
+#include <functional>
 
 namespace hstefan
 {
@@ -37,7 +39,8 @@ public:
    void onRender();
    void onDestroy();
    void onCreate();
-  
+
+protected:
    enum TruckAction
    {
       MOVE_FORWARD, MOVE_BACKWARD, STEER_LEFT, STEER_RIGHT
