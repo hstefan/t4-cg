@@ -23,9 +23,10 @@
  * Matricula: 2910182
  */
 
+#ifndef HSTEFAN_MUNCK_MUNCK_TRUCK_HPP
+#define HSTEFAN_MUNCK_MUNCK_TRUCK_HPP
+
 #include "../core/game/GameObject.hpp"
-#include <utility>
-#include <functional>
 
 namespace hstefan
 {
@@ -58,14 +59,16 @@ protected:
       static const int TRUCK_LEFT_KEY     = 'a';
       static const int TRUCK_RIGHT_KEY    = 'd';
 
-      static const int ARM_BOTTOM_SHRINK;
-      static const int ARM_MIDDLE_SHRINK;
-      static const int ARM_TOP_SHRINK;
-      static const int ARM_BOTTOM_EXPAND;
-      static const int ARM_MIDDLE_EXPAND;
-      static const int ARM_TOP_EXPAND;
+      static const int ARM_BOTTOM_SHRINK = 'j';
+      static const int ARM_MIDDLE_SHRINK = 'l';
+      static const int ARM_TOP_SHRINK    = 'o';
+      static const int ARM_BOTTOM_EXPAND = 'u';
+      static const int ARM_MIDDLE_EXPAND = 'i';
+      static const int ARM_TOP_EXPAND    = 'p';
+
    };
 private:
+   
    //pistao 1 - altura
    //pistao 2 - dobra
    //pistao 3 - comprimento
@@ -73,3 +76,5 @@ private:
 
 } //namespace munck
 } //namespace hstefan
+
+#endif
