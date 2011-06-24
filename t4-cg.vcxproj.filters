@@ -33,6 +33,9 @@
     <ClCompile Include="src\core\game\GameWorld.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\munck\MunckTruck.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\core\math\math.hpp">
@@ -63,6 +66,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\core\game\GameWorld.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\munck\MunckTruck.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

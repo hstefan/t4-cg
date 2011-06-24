@@ -90,6 +90,7 @@
     <ClCompile Include="src\core\game\GameWorld.cpp" />
     <ClCompile Include="src\core\wman\WinManager.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\munck\MunckTruck.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\core\c3d\Camera.hpp" />
@@ -102,6 +103,7 @@
     <ClInclude Include="src\core\c3d\transform3d.hpp" />
     <ClInclude Include="src\core\math\vector.hpp" />
     <ClInclude Include="src\core\wman\WinManager.hpp" />
+    <ClInclude Include="src\munck\MunckTruck.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
