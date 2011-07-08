@@ -71,5 +71,11 @@
     <ClInclude Include="src\munck\MunckTruck.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\munck\Piston.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\game\shapes\Cube.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
