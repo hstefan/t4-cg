@@ -34,8 +34,6 @@ namespace core {
 namespace game {
 namespace shapes {
 
-using namespace hstefan::core::math;
-
 /**
  * Creates an 1x1x1 cube.
  */
@@ -58,13 +56,8 @@ public:
    const float wx, wy, wz;
    const float sx, sy, sz;
    
-   static const vec3 v[8] = { makeVec(-0.5f, 0.5f, 0.5f), 
-      makeVec(0.5f, 0.5f, 0.5f), makeVec(0,5f, -0.5f, 0.5f), 
-      makeVec(-0.5f, -0.5f, 0.5f), makeVec(-0.5f, 0.5f, -0.5f), 
-      makeVec(0.5f, 0.5f, -0.5f), makeVec(0,5f, -0.5f, -0.5f), 
-      makeVec(-0.5f, -0.5f, -0.5f)  };
-   static const int v_i[36] = {0, 1, 2, 2, 3, 0, 0, 4, 7, 7, 3, 0, 0, 4, 5, 5, 
-      1, 4, 4, 5, 6, 6, 7, 4, 7, 2, 3, 7, 6, 2, 2, 1, 5, 5, 6, 1};
+   static const hstefan::core::math::vec3 v[8];
+   static const int v_i[36];
 };
 
 } //namespace forms

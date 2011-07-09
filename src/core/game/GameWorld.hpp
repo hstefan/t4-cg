@@ -45,7 +45,7 @@ public:
    
    static const int DEFAULT_OBJECT_ID = -1;
 
-   inline GameWorld(double fps = 30.f, double ups = 60.f);
+   inline GameWorld(float fps = 30.f, float ups = 60.f);
 
    bool isDone();
    void onUpdate();
@@ -60,7 +60,7 @@ private:
    object_id next_id;
 };
 
-GameWorld::GameWorld(double fps, double ups)
+GameWorld::GameWorld(float  fps, float ups)
    : wman::WinManager(fps, ups), game_objs(), next_id(0)
 {}
 

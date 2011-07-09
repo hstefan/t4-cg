@@ -29,6 +29,14 @@
 
 using hstefan::core::game::shapes::Cube;
 
+const hstefan::core::math::vec3 Cube::v[8] = { {{-0.5f, 0.5f, 0.5f}}, 
+   {{0.5f, 0.5f, 0.5f}}, {{0.5f, -0.5f, 0.5f}}, 
+   {{-0.5f, -0.5f, 0.5f}}, {{-0.5f, 0.5f, -0.5f}}, 
+   {{0.5f, 0.5f, -0.5f}}, {{0.5f, -0.5f, -0.5f}}, 
+   {{-0.5f, -0.5f, -0.5f}} };
+const int Cube::v_i[36] = {0, 1, 2, 2, 3, 0, 0, 4, 7, 7, 3, 0, 0, 4, 5, 5, 
+   1, 4, 4, 5, 6, 6, 7, 4, 7, 2, 3, 7, 6, 2, 2, 1, 5, 5, 6, 1};
+
 Cube::Cube(float wx, float wy, float wz, float sx, float sy, float sz)
    : wx(wx), wy(wy), wz(wz), sx(sx), sy(sy), sz(sz)
 {
