@@ -49,10 +49,13 @@ void Cube::onUpdate()
 
 void Cube::onRender()
 {
+   glPushMatrix();
    glTranslatef(wx, wy, wz);
-   glScalef(sx, sy, sx);
+   glScalef(sx, sy, sz);
+   glColor3f(1.f, 0.f, 0.f);
    glBegin(GL_TRIANGLES);
       for(int i = 0; i < 36; ++i) 
          glVertex3f(v[v_i[i]][0], v[v_i[i]][1], v[v_i[i]][2]);
    glEnd();
+   glPopMatrix();
 }

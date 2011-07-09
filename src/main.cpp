@@ -28,7 +28,14 @@ int main(int argc, char* argv[])
    }
    
    hstefan::core::game::shapes::Cube* c = new hstefan::core::game::shapes::Cube(0.f, 0.f, 0.f,
-      100.f, 100.f, 1.f);
+      100.f, 100.f, 200.f);
    hstefan::core::game::GameWorld world;
+   world.addObject(c);
+   glMatrixMode(GL_PROJECTION);
+   glLoadIdentity();
+   gluPerspective(45, WINDOW_WIDTH/WINDOW_HEIGHT, 1, 1000);
+   glMatrixMode(GL_MODELVIEW);
+   glViewport(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
+   gluLookAt(-200.f, 200.f, 800, 0, 0, 0, 0, 1, 0);
    world.run();
-}
+}  
