@@ -36,6 +36,9 @@
     <ClCompile Include="src\munck\MunckTruck.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\core\game\shapes\Cube.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\core\math\math.hpp">

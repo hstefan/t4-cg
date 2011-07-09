@@ -2,6 +2,8 @@
 #include <iostream>
 
 #include "core/game/GameWorld.hpp"
+#include "core/game/shapes/Cube.hpp"
+#include <GL/glu.h>
 
 int main(int argc, char* argv[])
 {
@@ -24,7 +26,9 @@ int main(int argc, char* argv[])
       std::cerr << "Failed to open GLFW window." << std::endl;
       return ERR_GLFW_WIN;
    }
-
+   
+   hstefan::core::game::shapes::Cube* c = new hstefan::core::game::shapes::Cube(0.f, 0.f, 0.f,
+      100.f, 100.f, 1.f);
    hstefan::core::game::GameWorld world;
    world.run();
 }

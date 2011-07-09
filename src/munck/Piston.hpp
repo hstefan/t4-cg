@@ -23,52 +23,25 @@
  * Matricula: 2910182
  */
 
-#ifndef HSTEFAN_CORE_GAME_SHAPES_CUBE_HPP
-#define HSTEFAN_CORE_GAME_SHAPES_CUBE_HPP
+#ifndef HSTEFAN_MUNCK_PISTON_HPP
+#define HSTEFAN_MUNCK_PISTON_HPP
 
-#include "../GameObject.hpp"
-#include "../../math/vector.hpp"
+#include "../core/math/vector.hpp"
 
-namespace hstefan {
-namespace core {
-namespace game {
-namespace shapes {
+namespace hstefan
+{
+namespace munck
+{
 
-using namespace hstefan::core::math;
-
-/**
- * Creates an 1x1x1 cube.
- */
-class Cube : public GameObject
+class Piston
 {
 public:
-   /**
-    * @param wx X center.
-    * @param wy Y center.
-    * @param wz Z center.
-    * @param sx X size.
-    * @param sy Y size.
-    * @param sy Z size.
-    */
-   Cube(float wx, float wy, float wz, float sx, float sy, float sz);
+   using core::math::vec3;
 
-   void onUpdate();
-   virtual void onRender();
-
-   const float wx, wy, wz;
-   const float sx, sy, sz;
-   
-   static const vec3 v[8] = { makeVec(-0.5f, 0.5f, 0.5f), 
-      makeVec(0.5f, 0.5f, 0.5f), makeVec(0,5f, -0.5f, 0.5f), 
-      makeVec(-0.5f, -0.5f, 0.5f), makeVec(-0.5f, 0.5f, -0.5f), 
-      makeVec(0.5f, 0.5f, -0.5f), makeVec(0,5f, -0.5f, -0.5f), 
-      makeVec(-0.5f, -0.5f, -0.5f)  };
-   static const int v_i[36] = {0, 1, 2, 2, 3, 0, 0, 4, 7, 7, 3, 0, 0, 4, 5, 5, 
-      1, 4, 4, 5, 6, 6, 7, 4, 7, 2, 3, 7, 6, 2, 2, 1, 5, 5, 6, 1};
+   vec3 pi, pf;
+   float max_comp;
 };
 
-} //namespace forms
-} //namespace game
-} //namespace core
+} //namespace munck
 } //namespace hstefan
 #endif
