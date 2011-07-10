@@ -91,6 +91,8 @@
     <ClCompile Include="src\core\game\shapes\Cube.cpp" />
     <ClCompile Include="src\core\wman\WinManager.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\munck\Arm.cpp" />
+    <ClCompile Include="src\munck\ArmBase.cpp" />
     <ClCompile Include="src\munck\MunckTruck.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -105,6 +107,7 @@
     <ClInclude Include="src\core\c3d\transform3d.hpp" />
     <ClInclude Include="src\core\math\vector.hpp" />
     <ClInclude Include="src\core\wman\WinManager.hpp" />
+    <ClInclude Include="src\munck\Arm.hpp" />
     <ClInclude Include="src\munck\ArmBase.hpp" />
     <ClInclude Include="src\munck\MunckTruck.hpp" />
     <ClInclude Include="src\munck\Piston.hpp" />
