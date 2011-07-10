@@ -23,42 +23,31 @@
  * Matricula: 2910182
  */
 
-#ifndef HSTEFAN_MUNCK_ARMBASE_HPP
-#define HSTEFAN_MUNCK_ARMBASE_HPP
+#include "ArmBase.hpp"
 
-#include <vector>
-#include "Arm.hpp"
+using hstefan::munck::ArmBase;
 
-namespace hstefan 
+ArmBase::ArmBase(unsigned int arm_num)
+   : arms(), num_arms(arm_num)
 {
-namespace munck
+   arms.reserve(num_arms);
+}
+
+
+bool hstefan::munck::ArmBase::raise(int arm)
 {
+   for(int i = arm; i < arms.size(); ++i)
+   {
+      if(arms[i].raise())
+         return false;
+   }
+}
 
-/**
- * Classe que seria a base do braço.
- */
-class ArmBase
+bool hstefan::munck::ArmBase::lower(int arm)
 {
-public:
-   ArmBase(unsigned int arm_num);
-   /**
-    * Levanta o braço especificado.
-    * @param arm Índice do braço a ser elevado.
-    * @return true se for possível, false caso contrário.
-    */
-   bool raise(int arm);
-   /**
-    * Abaixa o braço especificado.
-    * @param arm Índice do braço a ser elevado.
-    * @return true se for possível, false caso contrário.
-    */
-   bool lower(int arm);
-private:
-   std::vector<Arm> arms;
-   unsigned int num_arms;
-};
-
-} //namespace munck
-} //namespace hstefan
-
-#endif
+   for(int i = arm; i < arms.size(); ++i)
+   {
+      if(arms[i].lower())
+         return false;
+   }
+}
