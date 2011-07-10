@@ -33,39 +33,40 @@ using namespace hstefan::munck;
 using namespace hstefan::core::math;
 using namespace hstefan;
 
-#define M_PI 3.14159265358979323846
+#define M_PI 3.14159265358979323846f
 
 MunckTruck::MunckTruck(const core::math::vec3& pbase)
    : arm_base(2), pbase(pbase)
 {
-   vec3 fdir = makeVec(cos(M_PI/4), sin(M_PI/4), 0.f);
-   vec3 sdir = makeVec(cos(M_PI/6), sin(M_PI/6), 0.f);
+   camera_eye = makeVec(-200.f, 200.f, -800.f);
+   vec3 fdir = makeVec(cos(M_PI/4.f), sin(M_PI/4.f), 0.f);
+   vec3 sdir = makeVec(cos(M_PI/6.f), sin(M_PI/6.f), 0.f);
    float len = 150.f;
    
    vec3 pi_a = pbase + makeVec(100.f, 0.f, 0.f);
    vec3 pf_a = pbase + fdir*(len/3);
    Piston p1(pi_a, pf_a, 50.f, 100.f);
-   Arm a1(M_PI/4, len, p1);
+   Arm a1(45.f, len, p1);
    arm_base.setArm(0, a1);
 
    vec3 pi_b = pbase + fdir*len/2.f;
    vec3 pf_b = pi_b + sdir*len/3;
    Piston p2(pi_b, pf_b, 50.f, 100.f);
-   Arm a2(M_PI/6, len, p2);
+   Arm a2(45.f, len, p2);
    arm_base.setArm(1, a2);
 }
 
 void MunckTruck::onUpdate()
 {
    //Não deu tempo de fazer um caminhãozinho se movendo como pretendia :(
-   /*if(glfwGetKey(Keys::TRUCK_FORWARD_KEY) == GLFW_PRESS) 
-      ;
+   if(glfwGetKey(Keys::TRUCK_FORWARD_KEY) == GLFW_PRESS) 
+      camera_eye += makeVec(0, 0, 4.f);
    if(glfwGetKey(Keys::TRUCK_BACKWARD_KEY) == GLFW_PRESS) 
-      ;
+      camera_eye -= makeVec(0, 0, 4.f);
    if(glfwGetKey(Keys::TRUCK_LEFT_KEY) == GLFW_PRESS) 
-      ;
+      camera_eye -= makeVec(4.f, 0, 0.f);
    if(glfwGetKey(Keys::TRUCK_RIGHT_KEY) == GLFW_PRESS) 
-      ;*/
+      camera_eye += makeVec(4.f, 0, 0.f);
 
    if(glfwGetKey(Keys::ARM_BOTTOM_EXPAND) == GLFW_PRESS) 
       arm_base.raise(0);
@@ -75,16 +76,32 @@ void MunckTruck::onUpdate()
       arm_base.raise(1);
    if(glfwGetKey(Keys::ARM_MIDDLE_SHRINK) == GLFW_PRESS) 
       arm_base.lower(1);
-   if(glfwGetKey(Keys::ARM_TOP_EXPAND) == GLFW_PRESS) 
+   /*if(glfwGetKey(Keys::ARM_TOP_EXPAND) == GLFW_PRESS) 
       ;
    if(glfwGetKey(Keys::ARM_TOP_SHRINK) == GLFW_PRESS) 
-      ;
+      ;*/
 }
 
 void MunckTruck::onRender()
 {
+   glMatrixMode(GL_MODELVIEW);
    glPushMatrix();
-   glutSolidCube(100.f);
+   glLoadIdentity();
+   gluLookAt(camera_eye[0], camera_eye[1], camera_eye[2], 0, 0, 0, 0, 1, 0);
+   glPushMatrix();
+   glColor3f(41.f/255.f, 41.f/255.f, 41.f/255.f);
+   glTranslatef(0.f, -100.f, 0.f);
+   glPushMatrix();
+   glScalef(200.f, 50.f, 100.f);
+   glutSolidCube(1.f);
+   glPopMatrix();
+   glColor3f(1.f, 0.f, 0.f);
+   glTranslatef(0.f, 50.f, -50.f);
+   glPushMatrix();
+   glRotatef(arm_base.arms[0].getAngle(), 0.f, 0.f, 1.f);
+   glScalef(arm_base.arms[0].getLength(), 20.f, 40.f);
+   glutSolidCube(1.f);
+   glPopMatrix();
 }
 
 void MunckTruck::onDestroy()

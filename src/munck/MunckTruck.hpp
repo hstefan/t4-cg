@@ -57,10 +57,10 @@ protected:
    
    struct Keys
    {
-      static const int TRUCK_FORWARD_KEY  = 'w'; 
-      static const int TRUCK_BACKWARD_KEY = 's';
-      static const int TRUCK_LEFT_KEY     = 'a';
-      static const int TRUCK_RIGHT_KEY    = 'd';
+      static const int TRUCK_FORWARD_KEY  = 'W'; 
+      static const int TRUCK_BACKWARD_KEY = 'S';
+      static const int TRUCK_LEFT_KEY     = 'A';
+      static const int TRUCK_RIGHT_KEY    = 'D';
 
       static const int ARM_BOTTOM_SHRINK = 'j';
       static const int ARM_MIDDLE_SHRINK = 'l';
@@ -73,6 +73,7 @@ protected:
 private:
    ArmBase arm_base;
    core::math::vec3 pbase;
+   core::math::vec3 camera_eye;
 };
 
 } //namespace munck
