@@ -88,7 +88,6 @@ void MunckTruck::onRender()
    glPushMatrix();
    glLoadIdentity();
    gluLookAt(camera_eye[0], camera_eye[1], camera_eye[2], 0, 0, 0, 0, 1, 0);
-   glPushMatrix();
    glColor3f(41.f/255.f, 41.f/255.f, 41.f/255.f);
    glTranslatef(0.f, -100.f, 0.f);
    glPushMatrix();
@@ -96,8 +95,7 @@ void MunckTruck::onRender()
    glutSolidCube(1.f);
    glPopMatrix();
    glColor3f(1.f, 0.f, 0.f);
-   glTranslatef(0.f, 50.f, -50.f);
-   glPushMatrix();
+   glTranslatef(0.f, 50.f, 0.f);
    glRotatef(arm_base.arms[0].getAngle(), 0.f, 0.f, 1.f);
    glScalef(arm_base.arms[0].getLength(), 20.f, 40.f);
    glutSolidCube(1.f);
