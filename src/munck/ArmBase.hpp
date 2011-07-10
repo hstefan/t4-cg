@@ -53,6 +53,13 @@ public:
     * @return true se for possível, false caso contrário.
     */
    bool lower(int arm);
+
+   /**
+    * Seta o i-ésimo braço.
+    * @param i Índice do braço.
+    * @param arm estrutura de dados do braço.
+    */
+   void setArm(int i, const Arm& arm);
 private:
    std::vector<Arm> arms;
    unsigned int num_arms;

@@ -26,6 +26,7 @@
 #include "ArmBase.hpp"
 
 using hstefan::munck::ArmBase;
+using hstefan::munck::Arm;
 
 ArmBase::ArmBase(unsigned int arm_num)
    : arms(), num_arms(arm_num)
@@ -34,7 +35,7 @@ ArmBase::ArmBase(unsigned int arm_num)
 }
 
 
-bool hstefan::munck::ArmBase::raise(int arm)
+bool ArmBase::raise(int arm)
 {
    for(unsigned int i = arm; i < arms.size(); ++i)
    {
@@ -44,7 +45,7 @@ bool hstefan::munck::ArmBase::raise(int arm)
    return true;
 }
 
-bool hstefan::munck::ArmBase::lower(int arm)
+bool ArmBase::lower(int arm)
 {
    for(unsigned int i = arm; i < arms.size(); ++i)
    {
@@ -52,4 +53,9 @@ bool hstefan::munck::ArmBase::lower(int arm)
          return false;
    }
    return true;
+}
+
+void ArmBase::setArm(int i, const Arm& arm)
+{
+   arms[i] = arm;
 }
