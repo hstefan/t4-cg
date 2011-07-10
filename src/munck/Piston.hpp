@@ -36,9 +36,15 @@ namespace munck
 class Piston
 {
 public:
-   using core::math::vec3;
+   /**
+    * Checa se o pistão permite uma determinada alteração no seu tamanho.
+    * @param size o novo tamanho.
+    * @return True se for possível o movimento, false caso contrário.
+    */
+   bool allowSizeChange(float size);
 
-   vec3 pi, pf;
+   hstefan::core::math::vec3 pi;
+   hstefan::core::math::vec3 pf;
    float max_comp;
 };
 
