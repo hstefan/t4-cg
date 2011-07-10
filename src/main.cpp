@@ -1,9 +1,11 @@
 #include <GL/glfw.h>
+#include <GL/glut.h>
 #include <iostream>
 
 #include "core/game/GameWorld.hpp"
-#include "core/game/shapes/Cube.hpp"
+#include "munck/MunckTruck.hpp"
 #include <GL/glu.h>
+#include "core/math/vector.hpp"
 
 int main(int argc, char* argv[])
 {
@@ -26,16 +28,16 @@ int main(int argc, char* argv[])
       std::cerr << "Failed to open GLFW window." << std::endl;
       return ERR_GLFW_WIN;
    }
-   
-   hstefan::core::game::shapes::Cube* c = new hstefan::core::game::shapes::Cube(0.f, 0.f, 0.f,
-      100.f, 100.f, 200.f);
-   hstefan::core::game::GameWorld world;
-   world.addObject(c);
+   using namespace hstefan;
+   core::game::GameWorld world;
+   munck::MunckTruck* truck = new munck::MunckTruck(core::math::makeVec(0, 0, 0));
+   world.addObject(truck);
    glMatrixMode(GL_PROJECTION);
    glLoadIdentity();
    gluPerspective(45, WINDOW_WIDTH/WINDOW_HEIGHT, 1, 1000);
    glMatrixMode(GL_MODELVIEW);
    glViewport(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
    gluLookAt(-200.f, 200.f, 800, 0, 0, 0, 0, 1, 0);
+   glutInit(&argc, argv);
    world.run();
 }  

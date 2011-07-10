@@ -36,6 +36,8 @@ namespace munck
 class Piston
 {
 public:
+   inline Piston()
+   {}
    Piston(const hstefan::core::math::vec3& pi, hstefan::core::math::vec3& pf,
       float min_len, float max_len);
    /**

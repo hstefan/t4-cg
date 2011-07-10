@@ -36,6 +36,8 @@ namespace munck
 class Arm
 {
 public:
+   inline Arm() 
+   { }
    Arm(float sangle, float length, const Piston& p, float rotation_angle = 0.5f);
    Arm(const Arm& arm);
    Arm& operator=(const Arm& arm);

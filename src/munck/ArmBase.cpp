@@ -31,7 +31,7 @@ using hstefan::munck::Arm;
 ArmBase::ArmBase(unsigned int arm_num)
    : arms(), num_arms(arm_num)
 {
-   arms.reserve(num_arms);
+   arms.resize(num_arms);
 }
 
 

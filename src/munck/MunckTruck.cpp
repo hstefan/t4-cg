@@ -23,6 +23,7 @@
  * Matricula: 2910182
  */
 #include <GL/glfw.h>
+#include <GL/glut.h>
 
 #include "MunckTruck.hpp"
 #include "../core/math/vector.hpp"
@@ -30,6 +31,7 @@
 
 using namespace hstefan::munck;
 using namespace hstefan::core::math;
+using namespace hstefan;
 
 #define M_PI 3.14159265358979323846
 
@@ -66,13 +68,13 @@ void MunckTruck::onUpdate()
       ;*/
 
    if(glfwGetKey(Keys::ARM_BOTTOM_EXPAND) == GLFW_PRESS) 
-      ;
+      arm_base.raise(0);
    if(glfwGetKey(Keys::ARM_BOTTOM_SHRINK) == GLFW_PRESS) 
-      ;
+      arm_base.lower(0);
    if(glfwGetKey(Keys::ARM_MIDDLE_EXPAND) == GLFW_PRESS) 
-      ;
+      arm_base.raise(1);
    if(glfwGetKey(Keys::ARM_MIDDLE_SHRINK) == GLFW_PRESS) 
-      ;
+      arm_base.lower(1);
    if(glfwGetKey(Keys::ARM_TOP_EXPAND) == GLFW_PRESS) 
       ;
    if(glfwGetKey(Keys::ARM_TOP_SHRINK) == GLFW_PRESS) 
@@ -81,15 +83,15 @@ void MunckTruck::onUpdate()
 
 void MunckTruck::onRender()
 {
-   throw std::exception("The method or operation is not implemented.");
+   glPushMatrix();
+   glutSolidCube(100.f);
 }
 
 void MunckTruck::onDestroy()
 {
-   throw std::exception("The method or operation is not implemented.");
+   //throw std::exception("The method or operation is not implemented.");
 }
 
 void MunckTruck::onCreate()
 {
-   throw std::exception("The method or operation is not implemented.");
 }
