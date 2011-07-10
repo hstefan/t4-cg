@@ -27,6 +27,7 @@
 #define HSTEFAN_MUNCK_MUNCK_TRUCK_HPP
 
 #include "../core/game/GameObject.hpp"
+#include "ArmBase.hpp"
 
 namespace hstefan
 {
@@ -36,6 +37,8 @@ namespace munck
 class MunckTruck : public core::game::GameObject
 {
 public:
+   MunckTruck(const core::math::vec3& pbase);
+
    void onUpdate();
    void onRender();
    void onDestroy();
@@ -68,10 +71,8 @@ protected:
 
    };
 private:
-   
-   //pistao 1 - altura
-   //pistao 2 - dobra
-   //pistao 3 - comprimento
+   ArmBase arm_base;
+   core::math::vec3 pbase;
 };
 
 } //namespace munck

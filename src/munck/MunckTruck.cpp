@@ -25,19 +25,45 @@
 #include <GL/glfw.h>
 
 #include "MunckTruck.hpp"
+#include "../core/math/vector.hpp"
+#include <cmath>
 
 using namespace hstefan::munck;
+using namespace hstefan::core::math;
+
+#define M_PI 3.14159265358979323846
+
+MunckTruck::MunckTruck(const core::math::vec3& pbase)
+   : arm_base(2), pbase(pbase)
+{
+   vec3 fdir = makeVec(cos(M_PI/4), sin(M_PI/4), 0.f);
+   vec3 sdir = makeVec(cos(M_PI/6), sin(M_PI/6), 0.f);
+   float len = 150.f;
+   
+   vec3 pi_a = pbase + makeVec(100.f, 0.f, 0.f);
+   vec3 pf_a = pbase + fdir*(len/3);
+   Piston p1(pi_a, pf_a, 50.f, 100.f);
+   Arm a1(M_PI/4, len, p1);
+   arm_base.setArm(0, a1);
+
+   vec3 pi_b = pbase + fdir*len/2.f;
+   vec3 pf_b = pi_b + sdir*len/3;
+   Piston p2(pi_b, pf_b, 50.f, 100.f);
+   Arm a2(M_PI/6, len, p2);
+   arm_base.setArm(1, a2);
+}
 
 void MunckTruck::onUpdate()
 {
-   if(glfwGetKey(Keys::TRUCK_FORWARD_KEY) == GLFW_PRESS) 
+   //Não deu tempo de fazer um caminhãozinho se movendo como pretendia :(
+   /*if(glfwGetKey(Keys::TRUCK_FORWARD_KEY) == GLFW_PRESS) 
       ;
    if(glfwGetKey(Keys::TRUCK_BACKWARD_KEY) == GLFW_PRESS) 
       ;
    if(glfwGetKey(Keys::TRUCK_LEFT_KEY) == GLFW_PRESS) 
       ;
    if(glfwGetKey(Keys::TRUCK_RIGHT_KEY) == GLFW_PRESS) 
-      ;
+      ;*/
 
    if(glfwGetKey(Keys::ARM_BOTTOM_EXPAND) == GLFW_PRESS) 
       ;
