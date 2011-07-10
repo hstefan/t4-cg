@@ -105,6 +105,7 @@
     <ClInclude Include="src\core\c3d\transform3d.hpp" />
     <ClInclude Include="src\core\math\vector.hpp" />
     <ClInclude Include="src\core\wman\WinManager.hpp" />
+    <ClInclude Include="src\munck\ArmBase.hpp" />
     <ClInclude Include="src\munck\MunckTruck.hpp" />
     <ClInclude Include="src\munck\Piston.hpp" />
   </ItemGroup>

@@ -80,5 +80,8 @@
     <ClInclude Include="src\core\game\shapes\Cube.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\munck\ArmBase.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
