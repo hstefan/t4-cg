@@ -148,6 +148,15 @@ inline matrix<M - 1, 1> unhomogen(const matrix<M, 1>& v)
    return res;
 }
 
+template <unsigned int M>
+inline float distance(const matrix<M, 1>& v, const matrix<M, 1>& u)
+{
+   float acc = 0.f;
+   for(unsigned int i = 0; i < M; ++i) 
+      acc += v[i]*u[i];
+   return sqrt(acc);
+}
+
 } //namespace math
 } //namespace core
 } //namespace hstefan
