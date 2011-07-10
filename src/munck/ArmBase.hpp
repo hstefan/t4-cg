@@ -60,7 +60,7 @@ public:
     * @param arm estrutura de dados do braço.
     */
    void setArm(int i, const Arm& arm);
-private:
+
    std::vector<Arm> arms;
    unsigned int num_arms;
 };
