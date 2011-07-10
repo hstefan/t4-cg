@@ -23,34 +23,18 @@
  * Matricula: 2910182
  */
 
-#ifndef HSTEFAN_MUNCK_PISTON_HPP
-#define HSTEFAN_MUNCK_PISTON_HPP
+#include "Piston.hpp"
 
-#include "../core/math/vector.hpp"
+using hstefan::munck::Piston;
+using hstefan::core::math::vec3;
 
-namespace hstefan
+Piston::Piston(const vec3& pi, vec3& pf, float min_len, float max_len)
+   : pi(pi), pf(pf), min_len(min_len), max_len(max_len)
 {
-namespace munck
+
+}
+
+bool Piston::allowSizeChange(float size)
 {
-
-class Piston
-{
-public:
-   Piston(const hstefan::core::math::vec3& pi, hstefan::core::math::vec3& pf,
-      float min_len, float max_len);
-   /**
-    * Checa se o pistão permite uma determinada alteração no seu tamanho.
-    * @param size o novo tamanho.
-    * @return True se for possível o movimento, false caso contrário.
-    */
-   bool allowSizeChange(float size);
-
-   hstefan::core::math::vec3 pi;
-   hstefan::core::math::vec3 pf;
-   float min_len;
-   float max_len;
-};
-
-} //namespace munck
-} //namespace hstefan
-#endif
+   return size > min_len && size < max_len;
+}

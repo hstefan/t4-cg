@@ -45,6 +45,9 @@
     <ClCompile Include="src\munck\Arm.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\munck\Piston.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\core\math\math.hpp">

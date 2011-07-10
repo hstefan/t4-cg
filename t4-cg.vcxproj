@@ -94,6 +94,7 @@
     <ClCompile Include="src\munck\Arm.cpp" />
     <ClCompile Include="src\munck\ArmBase.cpp" />
     <ClCompile Include="src\munck\MunckTruck.cpp" />
+    <ClCompile Include="src\munck\Piston.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\core\c3d\Camera.hpp" />
