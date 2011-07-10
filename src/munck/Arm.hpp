@@ -36,14 +36,21 @@ namespace munck
 class Arm
 {
 public:
-   Arm(float sangle, float length, float rotation_angle = 0.5f);
+   Arm(float sangle, float length, const Piston& p, float rotation_angle = 0.5f);
+   Arm(const Arm& arm);
+   Arm& operator=(const Arm& arm);
    bool raise();
    bool lower();
+
+   float getRotationAngle() const;
+   float getAngle() const;
+   float getLength() const;
+   const Piston& getPiston() const;
 private:
-   const float rotation_angle;
+   float rotation_angle;
    float angle;
    float length;
-   Piston* piston;
+   Piston piston;
 };
 
 } //namespace munck

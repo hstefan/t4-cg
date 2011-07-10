@@ -31,23 +31,40 @@
 using hstefan::munck::Arm;
 using namespace hstefan::core::math;
 using namespace hstefan::core::c3d;
+using hstefan::munck::Piston;
 
-Arm::Arm( float sangle, float length, float rotation_angle /*= 0.5f*/ )
-   : rotation_angle(rotation_angle), angle(sangle), length(length)
+Arm::Arm( float sangle, float length, const Piston& piston, float rotation_angle)
+   : rotation_angle(rotation_angle), angle(sangle), length(length), piston(piston)
 {
 
 }
 
+Arm::Arm(const Arm& arm)
+   : rotation_angle(arm.rotation_angle), angle(arm.angle), length(arm.length),
+   piston(arm.piston)
+{}
+
+
+
+Arm& Arm::operator=(const Arm& arm)
+{
+   rotation_angle = arm.getRotationAngle();
+   angle = arm.getAngle();
+   length = arm.getLength();
+   piston = arm.getPiston();
+   return *this;
+}
+
 bool Arm::raise()
 {
-   vec3 v = piston->pf;
+   vec3 v = piston.pf;
    mat4d m = pitchRotationMatrix(rotation_angle);
    v = unhomogen(m*homogen(v));
-   float sz = distance(piston->pi, v);
-   if(piston->allowSizeChange(sz))
+   float sz = distance(piston.pi, v);
+   if(piston.allowSizeChange(sz))
    {
       angle += rotation_angle;
-      piston->pf = v;
+      piston.pf = v;
       return true;
    }
    return false;
@@ -55,15 +72,35 @@ bool Arm::raise()
 
 bool Arm::lower()
 {
-   vec3 v = piston->pf;
+   vec3 v = piston.pf;
    mat4d m = pitchRotationMatrix(-rotation_angle);
    v = unhomogen(m*homogen(v));
-   float sz = distance(piston->pi, v);
-   if(piston->allowSizeChange(sz))
+   float sz = distance(piston.pi, v);
+   if(piston.allowSizeChange(sz))
    {
       angle -= rotation_angle;
-      piston->pf = v;
+      piston.pf = v;
       return true;
    }
    return false;
+}
+
+float Arm::getRotationAngle() const
+{
+   return rotation_angle;
+}
+
+float Arm::getAngle() const
+{
+   return angle;
+}
+
+float Arm::getLength() const
+{
+   return length;
+}
+
+const Piston& Arm::getPiston() const
+{
+   return piston;
 }
