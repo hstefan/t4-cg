@@ -36,18 +36,20 @@ ArmBase::ArmBase(unsigned int arm_num)
 
 bool hstefan::munck::ArmBase::raise(int arm)
 {
-   for(int i = arm; i < arms.size(); ++i)
+   for(unsigned int i = arm; i < arms.size(); ++i)
    {
       if(arms[i].raise())
          return false;
    }
+   return true;
 }
 
 bool hstefan::munck::ArmBase::lower(int arm)
 {
-   for(int i = arm; i < arms.size(); ++i)
+   for(unsigned int i = arm; i < arms.size(); ++i)
    {
       if(arms[i].lower())
          return false;
    }
+   return true;
 }
