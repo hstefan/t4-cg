@@ -28,6 +28,7 @@
 #include "MunckTruck.hpp"
 #include "../core/math/vector.hpp"
 #include <cmath>
+#include "../core/c3d/transform3d.hpp"
 
 using namespace hstefan::munck;
 using namespace hstefan::core::math;
@@ -51,8 +52,8 @@ MunckTruck::MunckTruck(const core::math::vec3& pbase)
 
    vec3 pi_b = pbase + fdir*len/2.f;
    vec3 pf_b = pi_b + sdir*len/3;
-   Piston p2(pi_b, pf_b, 50.f, 100.f);
-   Arm a2(45.f, len, p2);
+   Piston p2(pi_b, pf_b, 25.f, 300.f);
+   Arm a2(60.f, 100.f, p2);
    arm_base.setArm(1, a2);
 }
 
@@ -111,6 +112,19 @@ void MunckTruck::onRender()
       glutSolidCube(1.f);
    glPopMatrix();
    
+   float angulo = (arm_base.arms[0].getAngle()*M_PI)/180;
+   vec3 delta = makeVec(-cos(angulo), sin(angulo), 0.f)*arm_base.arms[0].getLength();
+
+   glPushMatrix();
+      glColor3f(1.f, 0.f, 0.f);
+      glTranslatef(delta[0], delta[1], 0.f);
+      glTranslatef(0.f, -60.f, 0.f);
+      glRotatef(arm_base.arms[1].getAngle(), 0.f, 0.f, 1.f);
+      glScalef(10.f, arm_base.arms[1].getLength(), 30.f);
+      glTranslatef(0.f, .5f, 0.f);
+      glutSolidCube(1.f);
+   glPopMatrix();
+
    //glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 }
 

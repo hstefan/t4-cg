@@ -63,11 +63,11 @@ protected:
       static const int TRUCK_RIGHT_KEY    = 'D';
 
       static const int ARM_BOTTOM_SHRINK = 'J';
-      static const int ARM_MIDDLE_SHRINK = 'L';
+      static const int ARM_MIDDLE_SHRINK = 'K';
       static const int ARM_TOP_SHRINK    = 'O';
       static const int ARM_BOTTOM_EXPAND = 'U';
       static const int ARM_MIDDLE_EXPAND = 'I';
-      static const int ARM_TOP_EXPAND    = 'P';
+      static const int ARM_TOP_EXPAND    = 'L';
 
    };
 private:
