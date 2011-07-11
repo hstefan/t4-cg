@@ -32,6 +32,7 @@
 
 using namespace hstefan::munck;
 using namespace hstefan::core::math;
+using namespace hstefan::core::c3d;
 using namespace hstefan;
 
 #define M_PI 3.14159265358979323846f
@@ -41,7 +42,7 @@ MunckTruck::MunckTruck(const core::math::vec3& pbase)
 {
    camera_eye = makeVec(-200.f, 200.f, -800.f);
    Arm a1(60.f, 150.f, 25.f, 90.f);
-   Arm a2(30.f, 60.f, 10.f, 60.f);
+   Arm a2(30.f, 100.f, 10.f, 60.f);
    arm_base.setArm(0, a1);
    arm_base.setArm(1, a2);
    pf = makeVec(-200.f, 0.f, 0.f);
@@ -109,6 +110,8 @@ void MunckTruck::onRender()
    vec3 dir2 = makeVec(-sin(angulo), -cos(angulo) , 0.f);
    vec3 pi = dir*100.f;
    
+   vec3 delta = dir*arm_base.arms[0].getLength();
+
    glPushMatrix();
       glColor3f(245.f/255.f, 234.f/255.f, 10.f/255.f);
       glTranslatef(5.f*dir2[0], 5.f*dir2[1], dir2[2]);
@@ -135,13 +138,26 @@ void MunckTruck::onRender()
       glutSolidCube(1.f);
    glPopMatrix();
   
-   vec3 delta = dir*arm_base.arms[0].getLength();
-  
    glTranslatef(delta[0], delta[1], 0.f);
    glPushMatrix();
       glColor3f(.7f, .0f, .0f);
       glScalef(14.f, 14.f, 14.f);
       glutSolidSphere(1.0, 30, 30);
+   glPopMatrix();
+
+   vec3 pi2 = makeVec(0.f, -55.f, 0.f);
+   float angulo2 = (arm_base.arms[1].getAngle()*M_PI)/180.f;
+   vec3 dir4 = makeVec(-cos(angulo2), sin(angulo2), 0.f);
+   vec3 pf2 = dir4*80.f;
+
+   glPushMatrix();
+      glRotatef(90 - arm_base.arms[0].getAngle(), 0.f, 0.f, 1.f);
+      glColor3f(245.f/255.f, 234.f/255.f, 10.f/255.f);
+      glLineWidth(10.f);
+      glBegin(GL_LINES);
+         glVertex3f(pi2[0], pi2[1], pi2[2]);
+         glVertex3f(pf2[0], pf2[1], pf2[2]);
+      glEnd();
    glPopMatrix();
 
    vec3 hp = unit(delta)*7.f;
