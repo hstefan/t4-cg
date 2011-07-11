@@ -47,13 +47,13 @@ MunckTruck::MunckTruck(const core::math::vec3& pbase)
    vec3 pi_a = pbase + makeVec(100.f, 0.f, 0.f);
    vec3 pf_a = pbase + fdir*(len/3);
    Piston p1(pi_a, pf_a, 50.f, 100.f);
-   Arm a1(45.f, len, p1);
+   Arm a1(60.f, len, p1);
    arm_base.setArm(0, a1);
 
    vec3 pi_b = pbase + fdir*len/2.f;
    vec3 pf_b = pi_b + sdir*len/3;
    Piston p2(pi_b, pf_b, 25.f, 300.f);
-   Arm a2(60.f, 100.f, p2);
+   Arm a2(30.f, 100.f, p2);
    arm_base.setArm(1, a2);
 }
 
@@ -107,19 +107,20 @@ void MunckTruck::onRender()
    glTranslatef(0.f, 7.f, 0.f);
    glPushMatrix();
       glColor3f(1.f, 0.f, 0.f);
-      glRotatef(arm_base.arms[0].getAngle(), 0.f, 0.f, 1.f);
+      glRotatef(90 - arm_base.arms[0].getAngle(), 0.f, 0.f, 1.f);
       glScalef(10.f, arm_base.arms[0].getLength(), 30.f);
       glTranslatef(0.f, .5f, 0.f);
       glutSolidCube(1.f);
    glPopMatrix();
   
-   float angulo = (arm_base.arms[0].getAngle()*M_PI)/180;
+   float angulo = (arm_base.arms[0].getAngle()*M_PI)/180.f;
    vec3 delta = makeVec(-cos(angulo), sin(angulo), 0.f)*arm_base.arms[0].getLength();
 
    glTranslatef(delta[0], delta[1], 0.f);
    glPushMatrix();
       glColor3f(1.f, 0.f, 0.f);
-      glRotatef(arm_base.arms[1].getAngle(), 0.f, 0.f, 1.f);
+      glRotatef(90 - arm_base.arms[0].getAngle(), 0.f, 0.f, 1.f);
+      glRotatef(90 - arm_base.arms[1].getAngle(), 0.f, 0.f, 1.f);
       glScalef(10.f, arm_base.arms[1].getLength(), 30.f);
       glTranslatef(0.f, .5f, 0.f);
       glutSolidCube(1.f);
