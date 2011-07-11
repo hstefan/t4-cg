@@ -97,9 +97,6 @@ void MunckTruck::onRender()
       glutSolidSphere(1.0, 30, 30);
    glPopMatrix();
    
-   float angulo = (arm_base.arms[0].getAngle()*M_PI)/180.f;
-   vec3 dir = makeVec(-cos(angulo), sin(angulo), 0.f);
-   vec3 pi = dir*100.f;
    glPushMatrix();
       glColor3f(245.f/255.f, 234.f/255.f, 10.f/255.f);
       glTranslatef(pf[0], pf[1], pf[2]);
@@ -107,8 +104,14 @@ void MunckTruck::onRender()
       glutSolidSphere(1.0, 30, 30);
    glPopMatrix();
 
+   float angulo = (arm_base.arms[0].getAngle()*M_PI)/180.f;
+   vec3 dir = makeVec(-cos(angulo), sin(angulo), 0.f);
+   vec3 dir2 = makeVec(-sin(angulo), -cos(angulo) , 0.f);
+   vec3 pi = dir*100.f;
+   
    glPushMatrix();
       glColor3f(245.f/255.f, 234.f/255.f, 10.f/255.f);
+      glTranslatef(5.f*dir2[0], 5.f*dir2[1], dir2[2]);
       glTranslatef(pi[0], pi[1], pi[2]);
       glScalef(5.f, 5.f, 5.f);
       glutSolidSphere(1.0, 30, 30);
@@ -136,7 +139,6 @@ void MunckTruck::onRender()
   
    glTranslatef(delta[0], delta[1], 0.f);
    glPushMatrix();
-      
       glColor3f(.7f, .0f, .0f);
       glScalef(14.f, 14.f, 14.f);
       glutSolidSphere(1.0, 30, 30);
