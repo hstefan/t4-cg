@@ -89,7 +89,8 @@ void MunckTruck::onRender()
    glMatrixMode(GL_MODELVIEW);
    glLoadIdentity();
    gluLookAt(camera_eye[0], camera_eye[1], camera_eye[2], 0, 0, 0, 0, 1, 0);
-   glPushMatrix();
+   
+   glPushMatrix(); //base
       glColor3f(41.f/255.f, 41.f/255.f, 41.f/255.f);
       glTranslatef(0.f, -100.f, 0.f);
       glPushMatrix();
@@ -98,14 +99,14 @@ void MunckTruck::onRender()
    glPopMatrix();
 
    glTranslatef(0.f, 32.f, 0.f);
-   glPushMatrix();
+   glPushMatrix(); //esfera 1
       glColor3f(.7f, .0f, .0f);
       glScalef(14.f, 14.f, 14.f);
       glutSolidSphere(1.0, 30, 30);
    glPopMatrix();
 
    glTranslatef(0.f, 7.f, 0.f);
-   glPushMatrix();
+   glPushMatrix(); //braco 1
       glColor3f(1.f, 0.f, 0.f);
       glRotatef(90 - arm_base.arms[0].getAngle(), 0.f, 0.f, 1.f);
       glScalef(10.f, arm_base.arms[0].getLength(), 30.f);
@@ -115,8 +116,17 @@ void MunckTruck::onRender()
   
    float angulo = (arm_base.arms[0].getAngle()*M_PI)/180.f;
    vec3 delta = makeVec(-cos(angulo), sin(angulo), 0.f)*arm_base.arms[0].getLength();
-
+  
    glTranslatef(delta[0], delta[1], 0.f);
+   glPushMatrix();
+      
+      glColor3f(.7f, .0f, .0f);
+      glScalef(14.f, 14.f, 14.f);
+      glutSolidSphere(1.0, 30, 30);
+   glPopMatrix();
+
+   vec3 hp = unit(delta)*7.f;
+   glTranslatef(hp[0], hp[1], 0.f);
    glPushMatrix();
       glColor3f(1.f, 0.f, 0.f);
       glRotatef(90 - arm_base.arms[0].getAngle(), 0.f, 0.f, 1.f);
