@@ -84,11 +84,10 @@ void MunckTruck::onUpdate()
 
 void MunckTruck::onRender()
 {
-   glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+   //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
    glMatrixMode(GL_MODELVIEW);
    glLoadIdentity();
    gluLookAt(camera_eye[0], camera_eye[1], camera_eye[2], 0, 0, 0, 0, 1, 0);
-
    glPushMatrix();
       glColor3f(41.f/255.f, 41.f/255.f, 41.f/255.f);
       glTranslatef(0.f, -100.f, 0.f);
@@ -98,13 +97,13 @@ void MunckTruck::onRender()
 
    glPushMatrix();
       glColor3f(1.f, 0.f, 0.f);
-      glTranslatef(0.f, -50.f, 0.f);
-      glScalef(arm_base.arms[0].getLength(), 20.f, 30.f);
+      glTranslatef(0.f, -30.f, 0.f);
+      glScalef(10.f, arm_base.arms[0].getLength(), 30.f);
       glRotatef(arm_base.arms[0].getAngle(), 0.f, 0.f, 1.f);
-      glTranslatef(.5f, .0f, 0.f);
+      glTranslatef(0.f, -.5f, 0.f);
       glutSolidCube(1.f);
    glPopMatrix();
-   glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+   //glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 }
 
 void MunckTruck::onDestroy()
