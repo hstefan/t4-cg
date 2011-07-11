@@ -31,27 +31,27 @@
 using hstefan::munck::Arm;
 using namespace hstefan::core::math;
 using namespace hstefan::core::c3d;
-using hstefan::munck::Piston;
+//using hstefan::munck::Piston;
 
-Arm::Arm( float sangle, float length, const Piston& piston, float rotation_angle)
-   : rotation_angle(rotation_angle), angle(sangle), length(length), piston(piston)
+Arm::Arm(float sangle, float length, float min_angle, float max_angle, 
+   float rotation_angle)
+   : rotation_angle(sangle), length(length), min_angle(min_angle), 
+   max_angle(max_angle)
 {
 
 }
-
 Arm::Arm(const Arm& arm)
    : rotation_angle(arm.rotation_angle), angle(arm.angle), length(arm.length),
-   piston(arm.piston)
+   min_angle(arm.max_angle), max_angle(arm.max_angle)
 {}
-
-
 
 Arm& Arm::operator=(const Arm& arm)
 {
    rotation_angle = arm.getRotationAngle();
    angle = arm.getAngle();
    length = arm.getLength();
-   piston = arm.getPiston();
+   max_angle = arm.max_angle;
+   min_angle = arm.min_angle;
    return *this;
 }
 

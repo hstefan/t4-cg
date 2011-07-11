@@ -26,7 +26,7 @@
 #ifndef HSTEFAN_MUNCK_ARM_HPP
 #define HSTEFAN_MUNCK_ARM_HPP
 
-#include "Piston.hpp"
+//#include "Piston.hpp"
 
 namespace hstefan
 {
@@ -38,7 +38,8 @@ class Arm
 public:
    inline Arm() 
    { }
-   Arm(float sangle, float length, const Piston& p, float rotation_angle = 0.5f);
+   Arm(float sangle, float length, float min_angle, float max_angle,
+      float rotation_angle = 0.5f);
    Arm(const Arm& arm);
    Arm& operator=(const Arm& arm);
    bool raise();
@@ -47,12 +48,14 @@ public:
    float getRotationAngle() const;
    float getAngle() const;
    float getLength() const;
-   const Piston& getPiston() const;
-private:
+   //const Piston& getPiston() const;
+//private:
    float rotation_angle;
    float angle;
    float length;
-   Piston piston;
+   float min_angle;
+   float max_angle;
+   //Piston piston;
 };
 
 } //namespace munck
