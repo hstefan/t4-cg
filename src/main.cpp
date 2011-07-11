@@ -65,7 +65,7 @@ int main(int argc, char* argv[])
    gluPerspective(45, (float)WINDOW_WIDTH/WINDOW_HEIGHT, 1, 10000);
    glMatrixMode(GL_MODELVIEW);
    glViewport(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
-   //glEnable(GL_DEPTH_TEST);
+   glEnable(GL_DEPTH_TEST);
    initOpenGLLighting();
    glutInit(&argc, argv);
    world.run();
