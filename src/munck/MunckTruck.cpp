@@ -91,8 +91,8 @@ void MunckTruck::onRender()
    glLoadIdentity();
    gluLookAt(camera_eye[0], camera_eye[1], camera_eye[2], 0, 0, 0, 0, 1, 0);
    
-   glPushMatrix(); //base
-      glColor3f(41.f/255.f, 41.f/255.f, 41.f/255.f);
+   glPushMatrix(); //desenha base
+      glColor3f(0.f/255.f, 234.f/255.f, 0.f/255.f);
       glTranslatef(-0.f, -100.f, 0.f);
       glPushMatrix();
       glScalef(400.f, 50.f, 200.f);
@@ -100,37 +100,38 @@ void MunckTruck::onRender()
    glPopMatrix();
 
    glTranslatef(100.f, 32.f, 0.f);
-   glPushMatrix(); //esfera 1
+   glPushMatrix(); //esfera 1 (rolamento base)
       glColor3f(.7f, .0f, .0f);
       glScalef(14.f, 14.f, 14.f);
       glutSolidSphere(1.0, 30, 30);
    glPopMatrix();
    
-   glPushMatrix();
-      glColor3f(245.f/255.f, 234.f/255.f, 10.f/255.f);
+   glPushMatrix(); //desenha o ponto de contato com chao do primeiro pistao
+      glColor3f(54.f/255.f, 54.f/255.f, 54.f/255.f);
       glTranslatef(pf[0], pf[1], pf[2]);
       glScalef(5.f, 5.f, 5.f);
       glutSolidSphere(1.0, 30, 30);
    glPopMatrix();
 
+   //calculos usados para encontrar novas posicoes de translacao
    float angulo = (arm_base.arms[0].getAngle()*M_PI)/180.f;
-   vec3 dir = makeVec(-cos(angulo), sin(angulo), 0.f);
-   vec3 dir2 = makeVec(-sin(angulo), -cos(angulo) , 0.f);
-   vec3 pi = dir*100.f;
+   vec3 dir = makeVec(-cos(angulo), sin(angulo), 0.f); //encontra um vetor apontando no mesmo angulo que a base
+   vec3 dir2 = makeVec(-sin(angulo), -cos(angulo) , 0.f); //vetor perpendicular
+   vec3 pi = dir*100.f; //pi é o ponto onde a outra extremidade do pistao deve ser desenhada
    
    vec3 delta = dir*arm_base.arms[0].getLength();
 
-   glPushMatrix();
-      glColor3f(245.f/255.f, 234.f/255.f, 10.f/255.f);
+   glPushMatrix(); //desenha a outra extremidade do pistao
+      glColor3f(54.f/255.f, 54.f/255.f, 54.f/255.f);
       glTranslatef(5.f*dir2[0], 5.f*dir2[1], dir2[2]);
       glTranslatef(pi[0], pi[1], pi[2]);
       glScalef(5.f, 5.f, 5.f);
       glutSolidSphere(1.0, 30, 30);
    glPopMatrix();
 
-   glPushMatrix();
-      glColor3f(245.f/255.f, 234.f/255.f, 10.f/255.f);
-      glLineWidth(10.f);
+   glPushMatrix(); //desenha o pistao em si (linha)
+      glColor3f(65.f/255.f, 65.f/255.f, 65.f/255.f);
+      glLineWidth(20.f);
       glBegin(GL_LINES);
          glVertex3f(pi[0], pi[1], pi[2]);
          glVertex3f(pf[0], pf[1], pf[2]);
@@ -138,7 +139,7 @@ void MunckTruck::onRender()
    glPopMatrix();
 
    glTranslatef(0.f, 7.f, 0.f);
-   glPushMatrix(); //braco 1
+   glPushMatrix(); //desenha o primeiro braço
       glColor3f(1.f, 0.f, 0.f);
       glRotatef(90 - arm_base.arms[0].getAngle(), 0.f, 0.f, 1.f);
       glScalef(10.f, arm_base.arms[0].getLength(), 30.f);
@@ -147,20 +148,21 @@ void MunckTruck::onRender()
    glPopMatrix();
   
    glTranslatef(delta[0], delta[1], 0.f);
-   glPushMatrix();
+   glPushMatrix(); //desenha uma esfera para representar a juncao dos dois braços
       glColor3f(.7f, .0f, .0f);
       glScalef(14.f, 14.f, 14.f);
       glutSolidSphere(1.0, 30, 30);
    glPopMatrix();
 
-   vec3 pi2 = makeVec(0.f, -55.f, 0.f);
+   //calculos usados para determinar a posicao do pistao 2
+   vec3 pi2 = makeVec(0.f, -55.f, 0.f); 
    float angulo2 = (arm_base.arms[1].getAngle()*M_PI)/180.f;
    vec3 dir4 = makeVec(-cos(angulo2), sin(angulo2), 0.f);
-   vec3 pf2 = dir4*85.f;
+   vec3 pf2 = dir4*85.f; 
 
-   glPushMatrix();
+   glPushMatrix(); //desenha o pistao
       glRotatef(90 - arm_base.arms[0].getAngle(), 0.f, 0.f, 1.f);
-      glColor3f(245.f/255.f, 234.f/255.f, 10.f/255.f);
+      glColor3f(65.f/255.f, 65.f/255.f, 65.f/255.f);
       glLineWidth(10.f);
       glBegin(GL_LINES);
          glVertex3f(pi2[0], pi2[1], pi2[2]);
@@ -169,8 +171,8 @@ void MunckTruck::onRender()
    glPopMatrix();
 
    vec3 hp = unit(delta)*7.f;
-   glTranslatef(hp[0], hp[1], 0.f);
-   glPushMatrix();
+   glTranslatef(hp[0], hp[1], 0.f); //nessario por causa da esfera
+   glPushMatrix(); //desenha o segundo braço
       glColor3f(1.f, 0.f, 0.f);
       glRotatef(90 - arm_base.arms[0].getAngle(), 0.f, 0.f, 1.f);
       glRotatef(90 - arm_base.arms[1].getAngle(), 0.f, 0.f, 1.f);
@@ -179,7 +181,7 @@ void MunckTruck::onRender()
       glutSolidCube(1.f);
    glPopMatrix();
 
-   glPushMatrix();
+   glPushMatrix(); //desenha o braço extensível
       glColor3f(105.f/255.f, 105.f/255.f, 105.f/255.f);
       glRotatef(90.f - arm_base.arms[0].getAngle(), 0.f, 0.f, 1.f);
       glRotatef(90.f - arm_base.arms[1].getAngle(), 0.f, 0.f, 1.f);
