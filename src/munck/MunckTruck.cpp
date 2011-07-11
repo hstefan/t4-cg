@@ -64,9 +64,9 @@ void MunckTruck::onUpdate()
    if(glfwGetKey(Keys::TRUCK_BACKWARD_KEY) == GLFW_PRESS) 
       camera_eye -= makeVec(0, 0, 4.f);
    if(glfwGetKey(Keys::TRUCK_LEFT_KEY) == GLFW_PRESS) 
-      camera_eye -= makeVec(4.f, 0, 0.f);
-   if(glfwGetKey(Keys::TRUCK_RIGHT_KEY) == GLFW_PRESS) 
       camera_eye += makeVec(4.f, 0, 0.f);
+   if(glfwGetKey(Keys::TRUCK_RIGHT_KEY) == GLFW_PRESS) 
+      camera_eye -= makeVec(4.f, 0, 0.f);
 
    if(glfwGetKey(Keys::ARM_BOTTOM_EXPAND) == GLFW_PRESS) 
       arm_base.raise(0);
@@ -84,22 +84,27 @@ void MunckTruck::onUpdate()
 
 void MunckTruck::onRender()
 {
+   glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
    glMatrixMode(GL_MODELVIEW);
-   glPushMatrix();
    glLoadIdentity();
    gluLookAt(camera_eye[0], camera_eye[1], camera_eye[2], 0, 0, 0, 0, 1, 0);
-   glColor3f(41.f/255.f, 41.f/255.f, 41.f/255.f);
-   glTranslatef(0.f, -100.f, 0.f);
+
    glPushMatrix();
-   glScalef(200.f, 50.f, 100.f);
-   glutSolidCube(1.f);
+      glColor3f(41.f/255.f, 41.f/255.f, 41.f/255.f);
+      glTranslatef(0.f, -100.f, 0.f);
+      glScalef(200.f, 50.f, 100.f);
+      glutSolidCube(1.f);
    glPopMatrix();
-   glColor3f(1.f, 0.f, 0.f);
-   glTranslatef(0.f, 50.f, 0.f);
-   glRotatef(arm_base.arms[0].getAngle(), 0.f, 0.f, 1.f);
-   glScalef(arm_base.arms[0].getLength(), 20.f, 40.f);
-   glutSolidCube(1.f);
+
+   glPushMatrix();
+      glColor3f(1.f, 0.f, 0.f);
+      glTranslatef(0.f, -50.f, 0.f);
+      glScalef(arm_base.arms[0].getLength(), 20.f, 30.f);
+      glRotatef(arm_base.arms[0].getAngle(), 0.f, 0.f, 1.f);
+      glTranslatef(.5f, .0f, 0.f);
+      glutSolidCube(1.f);
    glPopMatrix();
+   glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 }
 
 void MunckTruck::onDestroy()

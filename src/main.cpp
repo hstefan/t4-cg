@@ -34,7 +34,7 @@ int main(int argc, char* argv[])
    world.addObject(truck);
    glMatrixMode(GL_PROJECTION);
    glLoadIdentity();
-   gluPerspective(45, (float)WINDOW_WIDTH/WINDOW_HEIGHT, 1, 1000);
+   gluPerspective(45, (float)WINDOW_WIDTH/WINDOW_HEIGHT, 1, 10000);
    glMatrixMode(GL_MODELVIEW);
    glViewport(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
    glutInit(&argc, argv);
