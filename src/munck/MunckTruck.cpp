@@ -96,6 +96,13 @@ void MunckTruck::onRender()
    glPopMatrix();
 
    glPushMatrix();
+      glColor3f(.7f, .0f, .0f);
+      glTranslatef(0.f, -75.f, 0.f);
+      glScalef(15.f, 15.f, 15.f);
+      glutSolidSphere(1.0, 30, 30);
+   glPopMatrix();
+
+   glPushMatrix();
       glColor3f(1.f, 0.f, 0.f);
       glTranslatef(0.f, -60.f, 0.f);
       glRotatef(arm_base.arms[0].getAngle(), 0.f, 0.f, 1.f);
@@ -103,6 +110,7 @@ void MunckTruck::onRender()
       glTranslatef(0.f, .5f, 0.f);
       glutSolidCube(1.f);
    glPopMatrix();
+   
    //glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 }
 
