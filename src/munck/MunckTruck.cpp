@@ -40,10 +40,11 @@ MunckTruck::MunckTruck(const core::math::vec3& pbase)
    : arm_base(2), pbase(pbase)
 {
    camera_eye = makeVec(-200.f, 200.f, -800.f);
-   Arm a1(60.f, 150.f, 30.f, 150.f);
+   Arm a1(60.f, 150.f, 25.f, 90.f);
    Arm a2(30.f, 60.f, 10.f, 60.f);
    arm_base.setArm(0, a1);
    arm_base.setArm(1, a2);
+   pf = makeVec(-200.f, 0.f, 0.f);
 }
 
 void MunckTruck::onUpdate()
@@ -81,17 +82,43 @@ void MunckTruck::onRender()
    
    glPushMatrix(); //base
       glColor3f(41.f/255.f, 41.f/255.f, 41.f/255.f);
-      glTranslatef(0.f, -100.f, 0.f);
+      glTranslatef(-0.f, -100.f, 0.f);
       glPushMatrix();
       glScalef(400.f, 50.f, 200.f);
       glutSolidCube(1.f);
    glPopMatrix();
 
-   glTranslatef(0.f, 32.f, 0.f);
+   glTranslatef(100.f, 32.f, 0.f);
    glPushMatrix(); //esfera 1
       glColor3f(.7f, .0f, .0f);
       glScalef(14.f, 14.f, 14.f);
       glutSolidSphere(1.0, 30, 30);
+   glPopMatrix();
+   
+   float angulo = (arm_base.arms[0].getAngle()*M_PI)/180.f;
+   vec3 dir = makeVec(-cos(angulo), sin(angulo), 0.f);
+   vec3 pi = dir*100.f;
+   glPushMatrix();
+      glColor3f(245.f/255.f, 234.f/255.f, 10.f/255.f);
+      glTranslatef(pf[0], pf[1], pf[2]);
+      glScalef(5.f, 5.f, 5.f);
+      glutSolidSphere(1.0, 30, 30);
+   glPopMatrix();
+
+   glPushMatrix();
+      glColor3f(245.f/255.f, 234.f/255.f, 10.f/255.f);
+      glTranslatef(pi[0], pi[1], pi[2]);
+      glScalef(5.f, 5.f, 5.f);
+      glutSolidSphere(1.0, 30, 30);
+   glPopMatrix();
+
+   glPushMatrix();
+      glColor3f(245.f/255.f, 234.f/255.f, 10.f/255.f);
+      glLineWidth(10.f);
+      glBegin(GL_LINES);
+         glVertex3f(pi[0], pi[1], pi[2]);
+         glVertex3f(pf[0], pf[1], pf[2]);
+      glEnd();
    glPopMatrix();
 
    glTranslatef(0.f, 7.f, 0.f);
@@ -103,8 +130,7 @@ void MunckTruck::onRender()
       glutSolidCube(1.f);
    glPopMatrix();
   
-   float angulo = (arm_base.arms[0].getAngle()*M_PI)/180.f;
-   vec3 delta = makeVec(-cos(angulo), sin(angulo), 0.f)*arm_base.arms[0].getLength();
+   vec3 delta = dir*arm_base.arms[0].getLength();
   
    glTranslatef(delta[0], delta[1], 0.f);
    glPushMatrix();

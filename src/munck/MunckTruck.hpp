@@ -75,6 +75,9 @@ private:
    ArmBase arm_base;
    core::math::vec3 pbase;
    core::math::vec3 camera_eye;
+
+   //let the bad coding begin (or continue if you preffer)
+   core::math::vec3 pf;
 };
 
 } //namespace munck
