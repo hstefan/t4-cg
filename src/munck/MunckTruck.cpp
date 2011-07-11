@@ -148,7 +148,7 @@ void MunckTruck::onRender()
    vec3 pi2 = makeVec(0.f, -55.f, 0.f);
    float angulo2 = (arm_base.arms[1].getAngle()*M_PI)/180.f;
    vec3 dir4 = makeVec(-cos(angulo2), sin(angulo2), 0.f);
-   vec3 pf2 = dir4*80.f;
+   vec3 pf2 = dir4*85.f;
 
    glPushMatrix();
       glRotatef(90 - arm_base.arms[0].getAngle(), 0.f, 0.f, 1.f);
