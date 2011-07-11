@@ -191,9 +191,6 @@ void MunckTruck::onRender()
       glutSolidCube(1.f);
    glPopMatrix();
    glPopMatrix();
-
-
-   //glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 }
 
 void MunckTruck::onDestroy()
