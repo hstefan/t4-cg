@@ -38,7 +38,7 @@ using namespace hstefan;
 #define M_PI 3.14159265358979323846f
 
 MunckTruck::MunckTruck(const core::math::vec3& pbase)
-   : arm_base(2), pbase(pbase)
+   : arm_base(2), pbase(pbase), ext_size(0.f), max_ext(400.f)
 {
    camera_eye = makeVec(-200.f, 200.f, -800.f);
    Arm a1(60.f, 150.f, 25.f, 90.f);
@@ -68,10 +68,18 @@ void MunckTruck::onUpdate()
       arm_base.raise(1);
    if(glfwGetKey(Keys::ARM_MIDDLE_SHRINK) == GLFW_PRESS) 
       arm_base.lower(1);
-   /*if(glfwGetKey(Keys::ARM_TOP_EXPAND) == GLFW_PRESS) 
-      ;
+   if(glfwGetKey(Keys::ARM_TOP_EXPAND) == GLFW_PRESS) 
+   {
+      ext_size += 3.5f;
+      if(ext_size > max_ext)
+         ext_size = max_ext;
+   }
    if(glfwGetKey(Keys::ARM_TOP_SHRINK) == GLFW_PRESS) 
-      ;*/
+   {
+      ext_size -= 3.5f;
+      if(ext_size < 0.f)
+         ext_size = 0.f;
+   }
 }
 
 void MunckTruck::onRender()
@@ -170,7 +178,20 @@ void MunckTruck::onRender()
       glTranslatef(0.f, .5f, 0.f);
       glutSolidCube(1.f);
    glPopMatrix();
+
+   glPushMatrix();
+      glColor3f(105.f/255.f, 105.f/255.f, 105.f/255.f);
+      glRotatef(90.f - arm_base.arms[0].getAngle(), 0.f, 0.f, 1.f);
+      glRotatef(90.f - arm_base.arms[1].getAngle(), 0.f, 0.f, 1.f);
+      glTranslatef(0.f, arm_base.arms[0].getAngle() + ext_size/2, 0.f);
+      glRotatef(90.f, 0.f, 0.f, 1.f);
+      glTranslatef(.0f, -4.f, 0.f);
+      glScalef(ext_size, 8.f, 10.f);
+      glTranslatef(0.f, .5f, 0.f);
+      glutSolidCube(1.f);
    glPopMatrix();
+   glPopMatrix();
+
 
    //glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 }

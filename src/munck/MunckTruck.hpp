@@ -78,6 +78,8 @@ private:
 
    //let the bad coding begin (or continue if you preffer)
    core::math::vec3 pf;
+   float ext_size;
+   float max_ext;
 };
 
 } //namespace munck
