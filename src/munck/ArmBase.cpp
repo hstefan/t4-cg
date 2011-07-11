@@ -37,22 +37,12 @@ ArmBase::ArmBase(unsigned int arm_num)
 
 bool ArmBase::raise(int arm)
 {
-   for(unsigned int i = arm; i < arms.size(); ++i)
-   {
-      if(arms[i].raise())
-         return false;
-   }
-   return true;
+   return arms[arm].raise();
 }
 
 bool ArmBase::lower(int arm)
 {
-   for(unsigned int i = arm; i < arms.size(); ++i)
-   {
-      if(arms[i].lower())
-         return false;
-   }
-   return true;
+   return arms[arm].lower();
 }
 
 void ArmBase::setArm(int i, const Arm& arm)
