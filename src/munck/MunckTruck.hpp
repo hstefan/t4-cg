@@ -28,6 +28,7 @@
 
 #include "../core/game/GameObject.hpp"
 #include "ArmBase.hpp"
+#include "../core/math/vector.hpp"
 
 namespace hstefan
 {

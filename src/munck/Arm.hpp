@@ -48,14 +48,11 @@ public:
    float getRotationAngle() const;
    float getAngle() const;
    float getLength() const;
-   //const Piston& getPiston() const;
-//private:
    float rotation_angle;
    float angle;
    float length;
    float min_angle;
    float max_angle;
-   //Piston piston;
 };
 
 } //namespace munck

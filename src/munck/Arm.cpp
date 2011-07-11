@@ -35,8 +35,8 @@ using namespace hstefan::core::c3d;
 
 Arm::Arm(float sangle, float length, float min_angle, float max_angle, 
    float rotation_angle)
-   : rotation_angle(sangle), length(length), min_angle(min_angle), 
-   max_angle(max_angle)
+   : angle(sangle), length(length), rotation_angle(rotation_angle),
+   min_angle(min_angle), max_angle(max_angle)
 {
 
 }
@@ -57,32 +57,24 @@ Arm& Arm::operator=(const Arm& arm)
 
 bool Arm::raise()
 {
-   vec3 v = piston.pf;
-   mat4d m = pitchRotationMatrix(rotation_angle);
-   v = unhomogen(m*homogen(v));
-   float sz = distance(piston.pi, v);
-   if(piston.allowSizeChange(sz))
+   angle += rotation_angle;
+   if(angle > max_angle)
    {
-      angle += rotation_angle;
-      piston.pf = v;
-      return true;
+      angle = max_angle;
+      return false;
    }
-   return false;
+   return true;
 }
 
 bool Arm::lower()
 {
-   vec3 v = piston.pf;
-   mat4d m = pitchRotationMatrix(-rotation_angle);
-   v = unhomogen(m*homogen(v));
-   float sz = distance(piston.pi, v);
-   if(piston.allowSizeChange(sz))
+   angle -= rotation_angle;
+   if(angle < min_angle)
    {
-      angle -= rotation_angle;
-      piston.pf = v;
-      return true;
+      angle = min_angle;
+      return false;
    }
-   return false;
+   return true;
 }
 
 float Arm::getRotationAngle() const
@@ -98,9 +90,4 @@ float Arm::getAngle() const
 float Arm::getLength() const
 {
    return length;
-}
-
-const Piston& Arm::getPiston() const
-{
-   return piston;
 }

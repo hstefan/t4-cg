@@ -40,20 +40,9 @@ MunckTruck::MunckTruck(const core::math::vec3& pbase)
    : arm_base(2), pbase(pbase)
 {
    camera_eye = makeVec(-200.f, 200.f, -800.f);
-   vec3 fdir = makeVec(cos(M_PI/4.f), sin(M_PI/4.f), 0.f);
-   vec3 sdir = makeVec(cos(M_PI/6.f), sin(M_PI/6.f), 0.f);
-   float len = 150.f;
-   
-   vec3 pi_a = pbase + makeVec(100.f, 0.f, 0.f);
-   vec3 pf_a = pbase + fdir*(len/3);
-   Piston p1(pi_a, pf_a, 50.f, 100.f);
-   Arm a1(60.f, len, p1);
+   Arm a1(60.f, 150.f, 30.f, 150.f);
+   Arm a2(30.f, 60.f, 10.f, 60.f);
    arm_base.setArm(0, a1);
-
-   vec3 pi_b = pbase + fdir*len/2.f;
-   vec3 pf_b = pi_b + sdir*len/3;
-   Piston p2(pi_b, pf_b, 25.f, 300.f);
-   Arm a2(30.f, 100.f, p2);
    arm_base.setArm(1, a2);
 }
 
