@@ -92,37 +92,38 @@ void MunckTruck::onRender()
    glPushMatrix();
       glColor3f(41.f/255.f, 41.f/255.f, 41.f/255.f);
       glTranslatef(0.f, -100.f, 0.f);
+      glPushMatrix();
       glScalef(400.f, 50.f, 200.f);
       glutSolidCube(1.f);
    glPopMatrix();
 
+   glTranslatef(0.f, 32.f, 0.f);
    glPushMatrix();
       glColor3f(.7f, .0f, .0f);
-      glTranslatef(0.f, -75.f, 0.f);
-      glScalef(15.f, 15.f, 15.f);
+      glScalef(14.f, 14.f, 14.f);
       glutSolidSphere(1.0, 30, 30);
    glPopMatrix();
 
+   glTranslatef(0.f, 7.f, 0.f);
    glPushMatrix();
       glColor3f(1.f, 0.f, 0.f);
-      glTranslatef(0.f, -60.f, 0.f);
       glRotatef(arm_base.arms[0].getAngle(), 0.f, 0.f, 1.f);
       glScalef(10.f, arm_base.arms[0].getLength(), 30.f);
       glTranslatef(0.f, .5f, 0.f);
       glutSolidCube(1.f);
    glPopMatrix();
-   
+  
    float angulo = (arm_base.arms[0].getAngle()*M_PI)/180;
    vec3 delta = makeVec(-cos(angulo), sin(angulo), 0.f)*arm_base.arms[0].getLength();
 
+   glTranslatef(delta[0], delta[1], 0.f);
    glPushMatrix();
       glColor3f(1.f, 0.f, 0.f);
-      glTranslatef(delta[0], delta[1], 0.f);
-      glTranslatef(0.f, -60.f, 0.f);
       glRotatef(arm_base.arms[1].getAngle(), 0.f, 0.f, 1.f);
       glScalef(10.f, arm_base.arms[1].getLength(), 30.f);
       glTranslatef(0.f, .5f, 0.f);
       glutSolidCube(1.f);
+   glPopMatrix();
    glPopMatrix();
 
    //glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
