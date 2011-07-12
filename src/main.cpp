@@ -14,15 +14,15 @@ void initOpenGLLighting()
    glEnable(GL_COLOR_MATERIAL);
    glColorMaterial(GL_FRONT,GL_AMBIENT_AND_DIFFUSE);
 
-   GLfloat mat_env[] = {1.f,1.f,1.f,1.f}; //material ambiente.
-   GLfloat mat_dif[] = {.7f,.4f,.0f,1.f}; //material difusa.
-   GLfloat mat_spe[] = {1.f,1.f,1.f,1.f}; //material especular.
-   GLfloat mat_shi = 125.f; //material brilho.
+   GLfloat mat_env[] = {1.f,1.f,1.f,1.f};
+   GLfloat mat_dif[] = {.7f,.4f,.0f,1.f};
+   GLfloat mat_spe[] = {1.f,1.f,1.f,1.f};
+   GLfloat mat_shi = 125.f;
 
-   GLfloat light_pos[] = {10.f,10.f,10.f,1.f}; //posicao da luz.
-   GLfloat light_env[] = {.1f,.1f,.1f,1.f}; //luz ambiente.
-   GLfloat light_dif[] = {1.f,1.f,1.f,1.f}; //luz difusa.
-   GLfloat light_spe[] = {1.f,1.f,1.f,1.f}; //luz especular.
+   GLfloat light_pos[] = {10.f,10.f,10.f,1.f};
+   GLfloat light_env[] = {.1f,.1f,.1f,1.f}; 
+   GLfloat light_dif[] = {1.f,1.f,1.f,1.f}; 
+   GLfloat light_spe[] = {1.f,1.f,1.f,1.f}; 
 
    glMaterialfv(GL_FRONT, GL_AMBIENT, mat_env);
    glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_dif);
@@ -56,6 +56,8 @@ int main(int argc, char* argv[])
       std::cerr << "Failed to open GLFW window." << std::endl;
       return ERR_GLFW_WIN;
    }
+
+   std::cout << "W A S D - Move camera" << std::endl << "U/L, I/K, O/L move pistoes." << std::endl;
    using namespace hstefan;
    core::game::GameWorld world;
    munck::MunckTruck* truck = new munck::MunckTruck(core::math::makeVec(0, 0, 0));
